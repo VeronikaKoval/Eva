@@ -1,47 +1,24 @@
+from selenium.webdriver import ActionChains
+from selenium.webdriver.support.wait import WebDriverWait
+
+from singleton import Singleton
+
+from selenium.webdriver.support import expected_conditions as EC
 
 
-class BasePage:
-# Decorator
-    def singleton(myClass):
-        instances = {}
-        def getInstance(*args, **kwargs):
-            if myClass not in instances:
-                instances[myClass] = myClass(*args, **kwargs)
-                return instances[myClass]
-            return getInstance()
+class BasePage():
 
+    wait_element_time = 10
 
+    def __init__(self):
+        self.driver = Singleton.get_webdriver()
+        self.wait = WebDriverWait(self.driver, self.wait_element_time)
 
-# A base class
-class Singleton(object):
-    _instance = None
-    def __new__(class_, *args, **kwargs):
-        if not isinstance(class_._instance, class_):
-            class_._instance = object.__new__(class_, *args, **kwargs)
-        return class_._instance
+    def click(self, locator):
+        element = self.wait.until(EC.presence_of_element_located(locator))
+        element.click()
 
-class MyClass(Singleton, BaseClass):
-    pass
-
-# a meta class
-class Singleton(type):
-    _instances = {}
-    def __call__(cls, *args, **kwargs):
-        if cls not in cls._instances:
-            cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
-        return cls._instances[cls]
-
-#Python2
-class MyClass(BaseClass):
-    __metaclass__ = Singleton
-
-#Python3
-class MyClass(BaseClass, metaclass=Singleton):
-    pass
-
-class MySingleton(object):
-    _instance = None
-    def __new__(self):
-        if not self._instance:
-            self._instance = super(MySingleton, self).__new__(self)
-            return self._instance
+    def hover_element(self, locator):
+        element_to_hover = self.wait.until(EC.presence_of_element_located(locator))
+        hover = ActionChains(self.driver).move_to_element(element_to_hover)
+        hover.perform()
