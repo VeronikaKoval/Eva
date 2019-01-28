@@ -1,3 +1,3 @@
-# MakeUp-
-test for MakeUp
+# Citrus
+test for Citrus
 description of several page and some tests
