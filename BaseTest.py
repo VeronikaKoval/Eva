@@ -1,10 +1,14 @@
-from selenium import webdriver
+
+from singleton import Singleton
 
 
 class BaseTest:
-    def setup(self):
-        self.driver = webdriver.Chrome(executable_path="C:/Users/ve.koval/Downloads\chromedriver_win32/chromedriver.exe")
-        self.driver.maximize_window()
 
-    def teardowm(self):
-        self.driver.close()
+    def setup(self):
+        self.driver = Singleton.get_webdriver()
+        self.driver.maximize_window()
+        self.base_url = 'https://makeup.com.ua/'
+        self.driver.get(self.base_url)
+
+    def teardown(self):
+        Singleton.close_driver()
