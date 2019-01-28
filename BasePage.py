@@ -6,13 +6,16 @@ from singleton import Singleton
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class BasePage():
+class BasePage:
 
     wait_element_time = 10
 
     def __init__(self):
         self.driver = Singleton.get_webdriver()
         self.wait = WebDriverWait(self.driver, self.wait_element_time)
+
+    def find_element(self, locator, element_name):
+        return self.wait.until(EC.presence_of_element_located(locator), 'There is no element "{}"'.format(element_name))
 
     def click(self, locator):
         element = self.wait.until(EC.presence_of_element_located(locator))
