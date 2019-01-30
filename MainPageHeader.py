@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
@@ -23,37 +25,40 @@ class Header(BasePage):
     search_placeholder = (By.CSS_SELECTOR, 'input[placeholder="Поиск..."]')
     search_field = (By.CSS_SELECTOR, 'input[id="search"]')
     search_results_block = (By.CSS_SELECTOR, 'div[search_autocomplete]')
+    empty_search_results_block = (By.CSS_SELECTOR, 'div.empty-result')
 
+    our_products_block = (By.CSS_SELECTOR, 'span.eva-icon-arr-down')
+    mozayka = (By.CSS_SELECTOR, 'a[href="https://mozayka.com.ua/"]')
 
+    left_main_menu = (By.CSS_SELECTOR, 'ul.left-menu.js-left-menu')
+    menu_item = (By.CSS_SELECTOR, 'span.top-level-a')
+    uhod_mi = (By.CSS_SELECTOR, 'a[href="https://eva.ua/024/uhod-soboj/"]')
+    parfumeria_mi = (By.CSS_SELECTOR, 'a[href="https://eva.ua/217/parfjumerija/"]')
 
     # Actions
 
     def choose_location(self):
         """ Choosing current city"""
-        choose_city = self.wait.until(EC.presence_of_element_located(self.confirm_location))
-        choose_city.click()
+        self.wait.until(EC.presence_of_element_located(self.confirm_location)).click()
 
     def get_loc_text(self):
         """Getting location text"""
-        location = self.wait.until(EC.presence_of_element_located(self.location))
-        return location.text
+        return self.wait.until(EC.presence_of_element_located(self.location)).text
 
     def change_language(self):
         """ Changing the language of the site"""
-        change_lang_btn = self.wait.until(EC.presence_of_element_located(self.select_lang))
-        change_lang_btn.click()
-        return self
+        self.wait.until(EC.presence_of_element_located(self.select_lang)).click()
 
     def get_site_url(self):
         """ Getting the site url"""
-        site_url = self.driver.current_url
-        return site_url
+        return self.driver.current_url
 
     def feedback(self):
         """ Clicking on feedback link to get feedback pop up"""
-        feedback_btn = self.wait.until(EC.presence_of_element_located(self.feedback_link))
-        feedback_btn.click()
-        return self
+        self.wait.until(EC.presence_of_element_located(self.confirm_location)).click()
+        time.sleep(2)
+        self.wait.until(EC.presence_of_element_located(self.feedback_link)).click()
+        time.sleep(2)
 
     def call_back_invalid(self):
         """ Checking calling back with the invalid phone number"""
@@ -61,11 +66,8 @@ class Header(BasePage):
         phone_field_form.click()
         phone_field_form.send_keys('00000000')
         phone_field_form.send_keys(Keys.ENTER)
-        return self
 
     def get_error_msg_text(self):
-        #error = self.wait.until(EC.presence_of_element_located(self.error_invalid_ph))
-        #return error.text
         return self.wait.until(EC.presence_of_element_located(self.error_invalid_ph)).text
 
     def call_back_valid(self):
@@ -74,7 +76,6 @@ class Header(BasePage):
         phone_field_form.click()
         phone_field_form.send_keys('000000000')
         phone_field_form.send_keys(Keys.ENTER)
-        return self
 
     def successfull_call_back(self):
         # success = self.wait.until(EC.presence_of_element_located(self.success_phone_valid))
@@ -82,6 +83,8 @@ class Header(BasePage):
 
     def is_placeholder_present(self):
         """Checking if the placeholder is present"""
+        self.wait.until(EC.presence_of_element_located(self.confirm_location)).click()
+        time.sleep(2)
         try:
             self.wait.until(EC.visibility_of_element_located(self.search_placeholder))
             return True
@@ -90,6 +93,8 @@ class Header(BasePage):
 
     def check_search(self):
         """ Checking the search field"""
+        self.wait.until(EC.presence_of_element_located(self.confirm_location))
+        time.sleep(2)
         search = self.wait.until(EC.presence_of_element_located(self.search_field))
         search.click()
         search.send_keys('духи')
@@ -100,8 +105,39 @@ class Header(BasePage):
             return False
 
     def search_with_invalid_query(self):
+        """ Checking search results with the invalid query"""
+        self.wait.until(EC.presence_of_element_located(self.confirm_location))
+        time.sleep(2)
         search = self.wait.until(EC.presence_of_element_located(self.search_field))
         search.click()
         search.send_keys('xdcydcyu')
-        return self.wait.until(EC.visibility_of_element_located(self.)).text #found and fill in locator
+
+    def get_error_msg_for_query(self):
+        return self.wait.until(EC.visibility_of_element_located(self.empty_search_results_block)).text
+
+    def our_products(self):
+        self.wait.until(EC.presence_of_element_located(self.our_products_block)).click()
+        self.wait.until(EC.presence_of_element_located(self.mozayka)).click()
+        time.sleep(3)
+
+    def main_drop_down_menu(self):
+        self.wait.until(EC.presence_of_element_located(self.confirm_location)).click()
+        time.sleep(2)
+        self.wait.until(EC.presence_of_element_located(self.menu_item)).click()
+        try:
+            self.wait.until(EC.presence_of_element_located(self.left_main_menu))
+            return True
+        except:
+            return False
+
+    def hover_menu_items(self):
+        self.wait.until(EC.presence_of_element_located(self.confirm_location)).click()
+        time.sleep(2)
+        self.wait.until(EC.presence_of_element_located(self.menu_item)).click()
+        uhod_mi = self.wait.until(EC.presence_of_element_located(self.uhod_mi))
+        uhod_mi.hover()
+        time.sleep(2)
+        # self.wait.until(EC.presence_of_element_located(self.uhod_mi)).hover()
+        # time.sleep(3)
+        # self.wait.until(EC.presence_of_element_located(self.parfumeria_mi)).hover(self.parfumeria_mi)
 

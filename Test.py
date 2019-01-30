@@ -1,8 +1,4 @@
-import time
-
 from selenium.common.exceptions import WebDriverException
-
-from BasePage import BasePage
 
 from BaseTest import BaseTest
 
@@ -10,20 +6,10 @@ from selenium.webdriver.common.by import By
 
 from MainPageHeader import Header
 
-class Test(BaseTest):
+from Loginization import Loginization
 
-    # def test_main_page(self):
-    #     slider_locator = (By.CSS_SELECTOR, 'div.header-contact div.button')
-    #     base_page = BasePage()
-    #     base_page.click(slider_locator)
-    #
-    # def test_search_field_is_clickable(self):
-    #     main_page = Header()
-    #     search_locator = main_page.search_field
-    #     # try:
-    #     #     main_page.click(search_locator)
-    #     # except WebDriverException:
-    #     #     print ('Element is not clickable')
+
+class TestHeader(BaseTest):
 
     def test_choose_location(self):
         main_page = Header()
@@ -58,6 +44,34 @@ class Test(BaseTest):
         return main_page.check_search is True
 
     def test_invalid_search_results(self):
-        pass
+        main_page = Header()
+        main_page.search_with_invalid_query()
+        assert 'Извините, ничего не найдено для "xdcydcyu"' in main_page.get_error_msg_for_query()
 
-    
+    def test_login(self):
+        main_page = Loginization()
+        return main_page.login is True
+
+    def test_unsuccessful_authorization_pass(self):
+        main_page = Loginization()
+        assert 'Неправильный адрес электронной почты (email) или пароль' in main_page.unsuccessful_authorization_pass()
+
+    def test_unsuccessful_authorization_mail(self):
+        main_page = Loginization()
+        assert 'Пожалуйста, введите правильный адрес электронной почты' in main_page.unsuccessful_authorization_email()
+
+    def test_successful_authorization(self):
+        main_page = Loginization()
+        assert 'Doctor' in main_page.get_account_text()
+
+    def test_our_products(self):
+        main_page = Header()
+        main_page.our_products()
+
+    def test_main_side_menu(self):
+        main_page = Header()
+        return main_page.main_drop_down_menu is True
+
+    def test_hovering_menu_item(self):
+        main_page = Header()
+        main_page.hover_menu_items()
