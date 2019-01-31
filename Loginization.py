@@ -6,6 +6,7 @@ from BasePage import BasePage
 
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class Loginization(BasePage):
 
     # Locators
@@ -25,7 +26,7 @@ class Loginization(BasePage):
     # Axctions
 
     def login(self):
-        """ Checking login popup afper clickin the login button"""
+        """ Checking login popup after clicking the login button"""
         self.wait.until(EC.presence_of_element_located(self.login_btn_header)).click()
         try:
             self.wait.until(EC.visibility_of_element_located(self.login_popup))
