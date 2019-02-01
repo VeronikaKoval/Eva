@@ -1,12 +1,10 @@
+import random
 import time
-from random import randint
-from select import select
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.select import Select
 
 from BasePage import BasePage
 
@@ -21,19 +19,24 @@ class Header(BasePage):
     Lviv = (By.XPATH, '//*[@id="ui-id-2"]/div/div[3]/div/a[8]')
     location_text = (By.CSS_SELECTOR, 'span.call-request-question')
 
-    # location_field = (By.CSS_SELECTOR, 'input[data-input="location-select-search"]')
-    # list_of_locations = (By.CSS_SELECTOR, 'a.select-city')
+
+    each_location = (By.CSS_SELECTOR, 'a.select-city')
+    # drop_down_loc_list = (By.CSS_SELECTOR, 'div[data-container="settlement-location-select"]')
+    # loc_name_at_the_popup = (By.CSS_SELECTOR, 'span[data-span="location-select-settlement"]')
+    changed_loc_popup = (By.CSS_SELECTOR, 'div.block-location-select-wrap')
+    loc_text_popup = (By.CSS_SELECTOR, 'span.call-request-massage')
 
     select_lang = (By.CSS_SELECTOR, 'a[href="#"]')
 
     feedback_link = (By.CSS_SELECTOR, 'div.block-call-back')
-    phone_num_field = (By.CSS_SELECTOR, 'input[type="tel"]')
-    success_phone_valid = (By.CSS_SELECTOR, 'input.phone-valid]')
+    phone_num_field = (By.CSS_SELECTOR, 'input.call-request-input')
+    success_phone_valid = (By.CSS_SELECTOR, 'div.js-submit-result-call-back')
     error_invalid_ph = (By.CSS_SELECTOR, 'span.js-phone-error')
 
-    search_placeholder = (By.CSS_SELECTOR, 'input[placeholder="Поиск..."]')
+
+    search_placeholder = (By.CSS_SELECTOR, 'input#search')
     search_field = (By.CSS_SELECTOR, 'input[id="search"]')
-    search_results_block = (By.CSS_SELECTOR, 'div[search_autocomplete]')
+    search_results_block = (By.CSS_SELECTOR, 'div.searchautocomplete__autocomplete')
     empty_search_results_block = (By.CSS_SELECTOR, 'div.empty-result')
 
     our_products_block = (By.CSS_SELECTOR, 'span.eva-icon-arr-down')
@@ -69,6 +72,8 @@ class Header(BasePage):
     subscription_error = (By.CSS_SELECTOR, 'div#newsletter-error')
     subscription_success = (By.CSS_SELECTOR, 'div.page.messages')
 
+    stores_tab = (By.CSS_SELECTOR, 'a[href$="stockists/"]')
+
     # Actions
 
     def confirm_default_location(self):
@@ -81,15 +86,24 @@ class Header(BasePage):
 
     def choose_location(self):
         """Choosing your city"""
-        # self.wait.until(EC.presence_of_element_located(self.choose_another_location)).click()
-        # # self.wait.until(EC.presence_of_element_located(self.location_field)).click()
-        # # self.wait.until(EC.presence_of_all_elements_located(self.list_of_locations))
-        # random_location = select(self.driver.find_element(self.list_of_locations))
-        # random_location.select_by_index(randint(0, len(random_location.options)))
         self.wait.until(EC.presence_of_element_located(self.choose_another_location_btn)).click()
         self.wait.until(EC.presence_of_element_located(self.Lviv)).click()
         time.sleep(2)
         return self.wait.until(EC.presence_of_element_located(self.location_text)).text
+
+    def choose_random_loc(self):
+        self.wait.until(EC.presence_of_element_located(self.choose_another_location_btn)).click()
+        time.sleep(2)
+
+        all_cities = self.wait.until(EC.presence_of_all_elements_located(self.each_location))
+        one_of_the_cities = random.choice(all_cities)
+        one_of_the_cities.click()
+        time.sleep(5)
+        # try:
+        #     self.wait.until(EC.text_to_be_present_in_element_value(self.loc_text_popup, 'Ваш город:'))
+        #     return True
+        # except:
+        #     return False
 
     def change_language(self):
         """ Changing the language of the site"""
@@ -99,33 +113,28 @@ class Header(BasePage):
         """ Getting the site url"""
         return self.driver.current_url
 
-    def feedback(self):
-        """ Clicking on feedback link to get feedback pop up"""
+    def call_back_invalid(self):
+        """ Clicking on feedback link to get feedback pop up, checking calling back with the invalid phone number"""
         self.wait.until(EC.presence_of_element_located(self.confirm_location_btn)).click()
         time.sleep(2)
         self.wait.until(EC.presence_of_element_located(self.feedback_link)).click()
-        time.sleep(2)
-
-    def call_back_invalid(self):
-        """ Checking calling back with the invalid phone number"""
         phone_field_form = self.wait.until(EC.presence_of_element_located(self.phone_num_field))
         phone_field_form.click()
         phone_field_form.send_keys('00000000')
         phone_field_form.send_keys(Keys.ENTER)
-
-    def get_error_msg_text(self):
         return self.wait.until(EC.presence_of_element_located(self.error_invalid_ph)).text
 
     def call_back_valid(self):
-        """Checking calling back with valid phone number"""
+        """ Clicking on feedback link to get feedback pop up, checking calling back with valid phone number"""
+        self.wait.until(EC.presence_of_element_located(self.confirm_location_btn)).click()
+        time.sleep(2)
+        self.wait.until(EC.presence_of_element_located(self.feedback_link)).click()
         phone_field_form = self.wait.until(EC.presence_of_element_located(self.phone_num_field))
         phone_field_form.click()
         phone_field_form.send_keys('000000000')
         phone_field_form.send_keys(Keys.ENTER)
-
-    def successfull_call_back(self):
-        # success = self.wait.until(EC.presence_of_element_located(self.success_phone_valid))
-        return self.wait.until(EC.presence_of_element_located(self.success_phone_valid))
+        time.sleep(2)
+        return self.wait.until(EC.presence_of_element_located(self.success_phone_valid)).text
 
     def is_placeholder_present(self):
         """Checking if the placeholder is present"""
@@ -162,6 +171,7 @@ class Header(BasePage):
         return self.wait.until(EC.visibility_of_element_located(self.empty_search_results_block)).text
 
     def our_products(self):
+        """ Checking the presence of "Our products" block'"""
         self.wait.until(EC.presence_of_element_located(self.our_products_block)).click()
         try:
             self.wait.until(EC.visibility_of_element_located(self.drop_down_block_our_products))
@@ -170,6 +180,7 @@ class Header(BasePage):
             return False
 
     def main_drop_down_menu(self):
+        """ Checking the presence of the side drop down menu after hovering the main menu item"""
         self.wait.until(EC.presence_of_element_located(self.confirm_location_btn)).click()
         time.sleep(2)
         self.wait.until(EC.presence_of_element_located(self.menu_item)).click()
@@ -256,11 +267,16 @@ class Header(BasePage):
         return self.wait.until(EC.visibility_of_element_located(self.subscription_error)).text
 
     def subscribe_for_news_successful(self):
-        """ Checking the ability to subscribe for news with the invalid mail"""
+        """ Checking the ability to subscribe for news with the valid mail"""
         subscribe = self.wait.until(EC.visibility_of_element_located(self.subscribe_field))
         subscribe.click()
         subscribe.send_keys('baylan.oluwatimilehin@plutocow.com')
         self.wait.until(EC.visibility_of_element_located(self.subscribe_btn)).click()
         return self.wait.until(EC.visibility_of_element_located(self.subscription_success)).text
+
+    def check_stores_tab(self):
+        """ Opening the "stores" tab and returning page current URL"""
+        self.wait.until(EC.presence_of_element_located(self.stores_tab)).click()
+        return self.driver.current_url
 
 
