@@ -23,6 +23,14 @@ class Loginization(BasePage):
     authorization_pass_error = (By.CSS_SELECTOR, 'div.messages.fail')
     authorization_mail_error = (By.CSS_SELECTOR, 'div.mage-error')
 
+    forgot_pass_btn = (By.CSS_SELECTOR, 'div.forgot-password')
+    forgot_pass_popup = (By.CSS_SELECTOR, 'form.form-forgot-password')
+    mail_field_in_forgot_pass = (By.XPATH, '//div[@class="field email required"]//input[@name="email"]')
+    new_pass_btn = (By.XPATH, '//form[@id="form-validate"]//button[@type="submit"]')
+    recovery_pass_succ_msg = (By.CSS_SELECTOR, 'div.page messages')
+    close_recovery_popup = (By.XPATH, '//aside[contains(@class,"_inner-scroll _show")]//button[contains(@type,"button")]')
+
+
     # Axctions
 
     def login(self):
@@ -77,8 +85,7 @@ class Loginization(BasePage):
         self.wait.until(EC.visibility_of_element_located(self.submit_btn)).click()
         time.sleep(3)
 
-        personal_acc = self.wait.until(EC.visibility_of_element_located(self.personal_account_btn))
-        return personal_acc.text
+        return self.wait.until(EC.visibility_of_element_located(self.personal_account_btn)).text
 
     def unsuccessful_authorization_pass(self):
         """ Checking authorization with the valid mail and invalid password"""
@@ -119,3 +126,22 @@ class Loginization(BasePage):
         time.sleep(3)
 
         return self.wait.until(EC.visibility_of_element_located(self.authorization_mail_error)).text
+
+    def recovery_pass(self):
+        """ Checking recovery of the password """
+        login = self.wait.until(EC.presence_of_element_located(self.login_btn_header))
+        login.click()
+        time.sleep(2)
+
+        self.wait.until(EC.presence_of_element_located(self.forgot_pass_btn)).click()
+        time.sleep(2)
+        recovery_form = self.wait.until(EC.presence_of_element_located(self.mail_field_in_forgot_pass))
+        recovery_form.click()
+        recovery_form.send_keys('qevawenemmo-7199@yopmail.com')
+        self.wait.until(EC.element_to_be_clickable(self.new_pass_btn)).click()
+        time.sleep(2)
+        self.wait.until(EC.presence_of_element_located(self.close_recovery_popup)).click()
+
+        return self.driver.current_url
+
+        # return self.wait.until(EC.visibility_of_element_located(self.recovery_pass_succ_msg)).text

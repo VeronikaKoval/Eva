@@ -23,7 +23,7 @@ class Header(BasePage):
     each_location = (By.CSS_SELECTOR, 'a.select-city')
     # drop_down_loc_list = (By.CSS_SELECTOR, 'div[data-container="settlement-location-select"]')
     # loc_name_at_the_popup = (By.CSS_SELECTOR, 'span[data-span="location-select-settlement"]')
-    changed_loc_popup = (By.CSS_SELECTOR, 'div.block-location-select-wrap')
+    changed_loc_popup = (By.CSS_SELECTOR, 'div.block-location-select') #'div.block-location-select-wrap')
     loc_text_popup = (By.CSS_SELECTOR, 'span.call-request-massage')
 
     select_lang = (By.CSS_SELECTOR, 'a[href="#"]')
@@ -73,6 +73,19 @@ class Header(BasePage):
     subscription_success = (By.CSS_SELECTOR, 'div.page.messages')
 
     stores_tab = (By.CSS_SELECTOR, 'a[href$="stockists/"]')
+    news_tab = (By.CSS_SELECTOR, 'a[href$="novosti/"]')
+    help_tab = (By.CSS_SELECTOR, 'a.js-show-help')
+    help_popup = (By.CSS_SELECTOR, 'ul.block-help-links')
+
+    certificate_tab = (By.CSS_SELECTOR, 'a.present-certificate-link')
+    certificate_popup = (By.CSS_SELECTOR, 'div.block-card__center')
+
+    wishlist_btn = (By.CSS_SELECTOR, 'span.wishlist')
+    cart_btn = (By.CSS_SELECTOR, 'div.minicart-wrapper')
+    cart_popup = (By.CSS_SELECTOR, 'div.block.block-minicart.empty')
+
+    uhod_za_soboj_tab = (By.CSS_SELECTOR, 'a[href$="/uhod-soboj/"].top-level-a')
+    logo = (By.CSS_SELECTOR, 'a.logo')
 
     # Actions
 
@@ -98,12 +111,11 @@ class Header(BasePage):
         all_cities = self.wait.until(EC.presence_of_all_elements_located(self.each_location))
         one_of_the_cities = random.choice(all_cities)
         one_of_the_cities.click()
-        time.sleep(5)
-        # try:
-        #     self.wait.until(EC.text_to_be_present_in_element_value(self.loc_text_popup, 'Ваш город:'))
-        #     return True
-        # except:
-        #     return False
+        try:
+            self.wait.until(EC.visibility_of_element_located(self.changed_loc_popup))
+            return True
+        except:
+            return False
 
     def change_language(self):
         """ Changing the language of the site"""
@@ -148,7 +160,7 @@ class Header(BasePage):
 
     def check_search(self):
         """ Checking the search field"""
-        self.wait.until(EC.presence_of_element_located(self.confirm_location_btn))
+        self.wait.until(EC.presence_of_element_located(self.confirm_location_btn)).click()
         time.sleep(2)
         search = self.wait.until(EC.presence_of_element_located(self.search_field))
         search.click()
@@ -161,7 +173,7 @@ class Header(BasePage):
 
     def search_with_invalid_query(self):
         """ Checking search results with the invalid query"""
-        self.wait.until(EC.presence_of_element_located(self.confirm_location_btn))
+        self.wait.until(EC.presence_of_element_located(self.confirm_location_btn)).click()
         time.sleep(2)
         search = self.wait.until(EC.presence_of_element_located(self.search_field))
         search.click()
@@ -275,8 +287,48 @@ class Header(BasePage):
         return self.wait.until(EC.visibility_of_element_located(self.subscription_success)).text
 
     def check_stores_tab(self):
-        """ Opening the "stores" tab and returning page current URL"""
+        """ Opening the "Stores" tab and returning page current URL"""
         self.wait.until(EC.presence_of_element_located(self.stores_tab)).click()
         return self.driver.current_url
 
+    def check_news_tab(self):
+        """ Opening the "News" tab and returning page current URL"""
+        self.wait.until(EC.presence_of_element_located(self.news_tab)).click()
+        return self.driver.current_url
 
+    def check_help_tab(self):
+        """ Opening the "Help" tab and verifying the popup is opened """
+        self.wait.until(EC.presence_of_element_located(self.help_tab)).click()
+        try:
+            self.wait.until(EC.visibility_of_element_located(self.help_popup))
+            return True
+        except:
+            return False
+
+    def check_certificate_tab(self):
+        """  Opening the "Certificate" tab and verifying the popup is opened"""
+        self.wait.until(EC.presence_of_element_located(self.certificate_tab)).click()
+        try:
+            self.wait.until(EC.visibility_of_element_located(self.certificate_popup))
+            return True
+        except:
+            return False
+
+    def checking_wishlist(self):
+        """ Opening the 'Wishlist' and verifying that it isn't available for unregistered account"""
+        self.wait.until(EC.presence_of_element_located(self.wishlist_btn)).click()
+        return self.driver.current_url
+
+    def checking_cart(self):
+        """ Opening the 'Cart' and verifying that it is empty for unregistered account"""
+        self.wait.until(EC.presence_of_element_located(self.cart_btn)).click()
+        return self.wait.until(EC.text_to_be_present_in_element(self.cart_popup, 'ВАША КОРЗИНА ПУСТА!'))
+
+    def checking_logo(self):
+        """ Opening the "Uhod" tab, clicking on the logo to verify that it returns to the main page"""
+        self.wait.until(EC.presence_of_element_located(self.confirm_location_btn)).click()
+        time.sleep(2)
+        self.wait.until(EC.presence_of_element_located(self.uhod_za_soboj_tab)).click()
+        time.sleep(2)
+        self.wait.until(EC.visibility_of_element_located(self.logo)).click()
+        return self.driver.current_url

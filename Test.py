@@ -20,10 +20,10 @@ class TestHeader(BaseTest):
         main_page = Header()
         assert 'ЛЬВОВ' in main_page.choose_location()
 
-    def test_location(self):
+    def test_random_location(self):
         """ Choosing randomly city from the drop_down"""
         main_page = Header()
-        main_page.choose_random_loc()
+        assert main_page.choose_random_loc() is True
 
     def test_changing_lang(self):
         """ Changing the language of the site from RUS to UKR and verifying the changes """
@@ -78,6 +78,14 @@ class TestHeader(BaseTest):
         main_page = Loginization()
         assert 'Doctor' in main_page.get_account_text()
 
+    def test_recovery_pass(self):
+        """ Checking recovery of the password"""
+        main_page = Loginization()
+        main_page.recovery_pass()
+        # assert 'Если на сайте существует учётная запись с адресом qevawenemmo-7199@yopmail.com,' in main_page.recovery_pass()
+        assert '/#account_login' in main_page.recovery_pass()
+        # Перевірити пізніше
+
     def test_our_products(self):
         """ Checking "Our products" drop down block"""
         main_page = Header()
@@ -128,7 +136,36 @@ class TestHeader(BaseTest):
         assert 'Спасибо, что подписались на нашу рассылку.' in main_page.subscribe_for_news_successful()
 
     def test_stores_tab(self):
-        """ Opening the "stores" tab and verifying that URL is changed"""
+        """ Opening the "Stores" tab and verifying that URL is changed"""
         main_page = Header()
         assert '/stockists/' in main_page.check_stores_tab()
 
+    def test_news_tab(self):
+        """ Opening the "News" tab and verifying that URL is changed"""
+        main_page = Header()
+        assert 'novosti' in main_page.check_news_tab()
+
+    def test_help_tab(self):
+        """ Opening the 'Help' tab and verifying that popup is appeared"""
+        main_page = Header()
+        assert main_page.check_help_tab() is True
+
+    def test_certificate_tab(self):
+        """ Opening the 'Certificate' tab and verifying that popup is appeared"""
+        main_page = Header()
+        assert main_page.check_certificate_tab() is True
+
+    def test_wishlist(self):
+        """ Opening the 'Wishlist' and verifying that it isn't available for unregistered account """
+        main_page = Header()
+        assert '#account_login' in main_page.checking_wishlist()
+
+    def test_cart(self):
+        """ Opening the 'Cart' and verifying that it isn't available for unregistered account"""
+        main_page = Header()
+        assert main_page.checking_cart() is True
+
+    def test_logo(self):
+        """ Opening the "Uhod" tab, clicking on the logo to verify that it returns to the main page"""
+        main_page = Header()
+        assert 'https://eva.ua/024/uhod-soboj/' not in main_page.checking_logo()
