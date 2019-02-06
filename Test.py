@@ -1,6 +1,7 @@
 from selenium.common.exceptions import WebDriverException
 
 from BaseTest import BaseTest
+from ListOfProducts import List
 
 from MainPageHeader import Header
 
@@ -21,7 +22,7 @@ class TestHeader(BaseTest):
         assert 'ЛЬВОВ' in main_page.choose_location()
 
     def test_random_location(self):
-        """ Choosing randomly city from the drop_down"""
+        """ Choosing random location from the list of location and verifying that popup with changed location is opened"""
         main_page = Header()
         assert main_page.choose_random_loc() is True
 
@@ -57,34 +58,6 @@ class TestHeader(BaseTest):
         main_page.search_with_invalid_query()
         assert 'Извините, ничего не найдено для "xdcydcyu"' in main_page.get_error_msg_for_query()
 
-    def test_login(self):
-        """ Checking the pop up after clicking the login btn"""
-        main_page = Loginization()
-        assert main_page.login() is True
-
-    def test_unsuccessful_authorization_pass(self):
-        """ Checking authorization with the valid mail and invalid password and verifying the text of the error msg"""
-        main_page = Loginization()
-        assert 'Неправильный адрес электронной почты (email) или пароль' in main_page.unsuccessful_authorization_pass()
-
-    def test_unsuccessful_authorization_mail(self):
-        """ Checking authorization with the invalid mail and valid password and verifying the text of the error msg"""
-        main_page = Loginization()
-        assert 'Пожалуйста, введите правильный адрес электронной почты' in main_page.unsuccessful_authorization_email()
-
-    def test_successful_authorization(self):
-        """ Checking authorization with the valid email and password and verifying the name of the account of the
-         registered person"""
-        main_page = Loginization()
-        assert 'Doctor' in main_page.get_account_text()
-
-    def test_recovery_pass(self):
-        """ Checking recovery of the password"""
-        main_page = Loginization()
-        main_page.recovery_pass()
-        # assert 'Если на сайте существует учётная запись с адресом qevawenemmo-7199@yopmail.com,' in main_page.recovery_pass()
-        assert '/#account_login' in main_page.recovery_pass()
-        # Перевірити пізніше
 
     def test_our_products(self):
         """ Checking "Our products" drop down block"""
@@ -169,3 +142,62 @@ class TestHeader(BaseTest):
         """ Opening the "Uhod" tab, clicking on the logo to verify that it returns to the main page"""
         main_page = Header()
         assert 'https://eva.ua/024/uhod-soboj/' not in main_page.checking_logo()
+
+
+
+class TestProductPage(BaseTest):
+
+    def setup(self):
+        super(TestProductPage, self).setup()
+        self.driver.get(self.base_url+'024-273-293/sredstva-problemnoj-kozhi/')
+
+    def test_list_of_products(self):
+        """ Opening the menu category, verifying that url has changed"""
+        products_list = List()
+        assert '/sredstva-problemnoj-kozhi/' in products_list.open_category()
+
+    def test_filters(self):
+        """ Applying filters: county, """
+        products_list = List()
+        assert products_list.apply_filter_country() is True
+
+    def test_cancellation_of_filter(self):
+        """ Cancellation of the filter country"""
+        products_list = List()
+        # products_list.cancel_filter_country()
+        assert products_list.cancel_filter_country() is True
+
+
+class TestLoginization(BaseTest):
+
+    def test_login(self):
+        """ Checking the presence of the pop up after clicking the login btn"""
+        main_page = Loginization()
+        assert main_page.login() is True
+
+    def test_unsuccessful_authorization_pass(self):
+        """ Checking authorization with the valid mail and invalid password and verifying the text of the error msg"""
+        main_page = Loginization()
+        assert 'Неправильный адрес электронной почты (email) или пароль' in main_page.unsuccessful_authorization_pass()
+
+    def test_unsuccessful_authorization_mail(self):
+        """ Checking authorization with the invalid mail and valid password and verifying the text of the error msg"""
+        main_page = Loginization()
+        assert 'Пожалуйста, введите правильный адрес электронной почты' in main_page.unsuccessful_authorization_email()
+
+    def test_successful_authorization(self):
+        """ Checking authorization with the valid email and password and verifying the name of the account of the
+         registered person"""
+        main_page = Loginization()
+        assert 'Doctor' in main_page.get_account_text()
+
+    def test_recovery_unsucc(self):
+        """ Checking recovery of the password with the invalid mail and verifying the text of the error"""
+        main_page = Loginization()
+        assert 'Пожалуйста, введите правильный адрес электронной почты' in main_page.recovery_pass_unsuccess()
+
+    def test_recovery_pass(self):
+        """ Checking recovery of the password with the valid mail and """
+        main_page = Loginization()
+        assert 'Если на сайте существует учётная запись с адресом cemmozosyh-0165@yopmail.com,' \
+               ' Вы получите письмо со ссылкой для смены пароля.' in main_page.recovery_pass_success()

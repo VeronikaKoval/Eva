@@ -23,7 +23,7 @@ class Header(BasePage):
     each_location = (By.CSS_SELECTOR, 'a.select-city')
     # drop_down_loc_list = (By.CSS_SELECTOR, 'div[data-container="settlement-location-select"]')
     # loc_name_at_the_popup = (By.CSS_SELECTOR, 'span[data-span="location-select-settlement"]')
-    changed_loc_popup = (By.CSS_SELECTOR, 'div.block-location-select') #'div.block-location-select-wrap')
+    changed_loc_popup = (By.CSS_SELECTOR, 'div.block-location-select')
     loc_text_popup = (By.CSS_SELECTOR, 'span.call-request-massage')
 
     select_lang = (By.CSS_SELECTOR, 'a[href="#"]')
@@ -59,9 +59,10 @@ class Header(BasePage):
 
     product_block = (By.CSS_SELECTOR, 'div.block-product-tabs')
     product_item = (By.CSS_SELECTOR, 'div.product-item horizontal')
-    product_item_title = (By.CSS_SELECTOR, 'a.title')
-    product_item_price = (By.CSS_SELECTOR, 'span.price')
-    product_item_buy_btn = (By.CSS_SELECTOR, 'button.action.tocart.primary')
+    product_item_title = (By.CSS_SELECTOR, 'strong.product-item-name')
+    product_item_photo = (By.CSS_SELECTOR, 'a.product-item-photo')
+    product_item_price = (By.CSS_SELECTOR, 'div.price-box')
+    product_item_buy_btn = (By.CSS_SELECTOR, 'button.action.tocart.primary') #or (button[title="Купить"]_
 
     linejka_tovarov = (By.CSS_SELECTOR, 'div.new-banners-wrap')
     naboru_block = (By.CSS_SELECTOR, 'div.collecting-wrap')
@@ -105,6 +106,7 @@ class Header(BasePage):
         return self.wait.until(EC.presence_of_element_located(self.location_text)).text
 
     def choose_random_loc(self):
+        """ Choosing random location from the list of location"""
         self.wait.until(EC.presence_of_element_located(self.choose_another_location_btn)).click()
         time.sleep(2)
 
@@ -118,7 +120,7 @@ class Header(BasePage):
             return False
 
     def change_language(self):
-        """ Changing the language of the site"""
+        """ Changing the language of the site to UKR"""
         self.wait.until(EC.presence_of_element_located(self.select_lang)).click()
 
     def get_site_url(self):

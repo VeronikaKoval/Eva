@@ -22,6 +22,6 @@ class BasePage:
         element.click()
 
     def hover_element(self, locator):
-        element_to_hover = self.wait.until(EC.presence_of_element_located(locator))
+        element_to_hover = self.wait.until(EC.visibility_of_element_located(locator))
         hover = ActionChains(self.driver).move_to_element(element_to_hover)
         hover.perform()
