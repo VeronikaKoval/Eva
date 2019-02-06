@@ -18,11 +18,7 @@ class Header(BasePage):
     choose_another_location_btn = (By.CSS_SELECTOR, 'a[data-role="select-location"]')
     Lviv = (By.XPATH, '//*[@id="ui-id-2"]/div/div[3]/div/a[8]')
     location_text = (By.CSS_SELECTOR, 'span.call-request-question')
-
-
     each_location = (By.CSS_SELECTOR, 'a.select-city')
-    # drop_down_loc_list = (By.CSS_SELECTOR, 'div[data-container="settlement-location-select"]')
-    # loc_name_at_the_popup = (By.CSS_SELECTOR, 'span[data-span="location-select-settlement"]')
     changed_loc_popup = (By.CSS_SELECTOR, 'div.block-location-select')
     loc_text_popup = (By.CSS_SELECTOR, 'span.call-request-massage')
 
@@ -32,7 +28,6 @@ class Header(BasePage):
     phone_num_field = (By.CSS_SELECTOR, 'input.call-request-input')
     success_phone_valid = (By.CSS_SELECTOR, 'div.js-submit-result-call-back')
     error_invalid_ph = (By.CSS_SELECTOR, 'span.js-phone-error')
-
 
     search_placeholder = (By.CSS_SELECTOR, 'input#search')
     search_field = (By.CSS_SELECTOR, 'input[id="search"]')
@@ -58,12 +53,6 @@ class Header(BasePage):
     drop_down_menu = (By.CSS_SELECTOR, 'ul.level-0.submenu.js-submenu.width-banner.mansorny')
 
     product_block = (By.CSS_SELECTOR, 'div.block-product-tabs')
-    product_item = (By.CSS_SELECTOR, 'div.product-item horizontal')
-    product_item_title = (By.CSS_SELECTOR, 'strong.product-item-name')
-    product_item_photo = (By.CSS_SELECTOR, 'a.product-item-photo')
-    product_item_price = (By.CSS_SELECTOR, 'div.price-box')
-    product_item_buy_btn = (By.CSS_SELECTOR, 'button.action.tocart.primary') #or (button[title="Купить"]_
-
     linejka_tovarov = (By.CSS_SELECTOR, 'div.new-banners-wrap')
     naboru_block = (By.CSS_SELECTOR, 'div.collecting-wrap')
     brands_block = (By.CSS_SELECTOR, 'div.brands-wrap')
@@ -234,18 +223,6 @@ class Header(BasePage):
         except:
             return False
 
-    # def check_elements_of_product_item(self):
-    #     """Checking the presents of title.price, image on the separate product item """
-    #     try:
-    #         self.wait.until(EC.presence_of_element_located(self.product_item))
-    #         self.wait.until(EC.presence_of_element_located(self.product_item_title))
-    #         self.wait.until(EC.presence_of_element_located(self.product_item_price))
-    #         self.wait.until(EC.presence_of_element_located(self.product_item_buy_btn))
-    #         return True
-    #     except:
-    #         return
-    #     False
-
     def check_linejka_tovarov(self):
         """Checking presence of the block "Linejka tovarov" """
         try:
@@ -273,8 +250,6 @@ class Header(BasePage):
     def subscribe_for_news_unsuccessful(self):
         """ Checking the ability to subscribe for news with the invalid mail"""
         subscribe = self.wait.until(EC.visibility_of_element_located(self.subscribe_field))
-        # self.driver.execute_script("arguments[0].scrollIntoView(true);", subscribe)
-        # time.sleep(2)
         subscribe.click()
         subscribe.send_keys('ruzifawomaheximail.com')
         self.wait.until(EC.visibility_of_element_located(self.subscribe_btn)).click()
