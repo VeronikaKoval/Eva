@@ -8,7 +8,7 @@ class BaseTest:
         self.driver = Singleton.get_webdriver()
         self.driver.maximize_window()
         self.base_url = 'https://eva.ua/'
-        self.driver.get(self.base_url)
+        # self.driver.get(self.base_url)
 
     def teardown(self):
         Singleton.close_driver()

@@ -32,17 +32,13 @@ class Loginization(BasePage):
 
     # Axctions
 
-    def login(self):
-        """ Checking presence the login popup after clicking the login button"""
+    def is_login_popup_present(self):
+        """ Checking presence of the login popup after clicking the login button"""
         self.wait.until(EC.presence_of_element_located(self.login_btn_header)).click()
-        try:
-            self.wait.until(EC.visibility_of_element_located(self.login_popup))
-            return True
-        except:
-            return False
+        return self.is_element_present(self.login_popup)
 
     def authorize(self, login, password):
-        """ Opening the popup, entering the email and password"""
+        """ Opening the login popup, entering the email and password"""
         self.wait.until(EC.presence_of_element_located(self.login_btn_header)).click()
         time.sleep(2)
 
@@ -55,28 +51,28 @@ class Loginization(BasePage):
         password_field.send_keys(password)
 
         self.wait.until(EC.visibility_of_element_located(self.submit_btn)).click()
-        time.sleep(3)
+        # time.sleep(3)
+        return self
 
-    def get_account_text(self):
-        """ Checking authorization with valid mail and valid password and returning account name"""
-        self.authorize(login='ruzifawoma@heximail.com', password='qi3R8Ue4gj8g9BV')
+    def get_account_name_text(self):
+        """ Checking authorization with valid mail and valid password, :return:account name text"""
         return self.wait.until(EC.visibility_of_element_located(self.personal_account_btn)).text
 
-    def unsuccessful_authorization_pass(self):
-        """ Checking authorization with the valid mail and invalid password and returning text of the error message"""
-        self.authorize(login='ruzifawoma@heximail.com', password='chcciicnbcg')
-        return self.wait.until(EC.visibility_of_element_located(self.authorization_pass_error)).text
-
-    def unsuccessful_authorization_email(self):
-        """ Checking authorization with the invalid mail and valid password and returning text of the error message"""
-        self.authorize(login='ruzifawoma@heximailcom', password='qi3R8Ue4gj8g9BV')
+    def get_error_text_wrong_email(self):
+        """ Checking authorization with the invalid mail and valid password,
+        :return: authorization error message text """
         return self.wait.until(EC.visibility_of_element_located(self.authorization_mail_error)).text
 
+    def get_error_text_wrong_pass(self):
+        """ Checking authorization with the valid mail and invalid password,
+         :return: authorization error message text"""
+        return self.wait.until(EC.visibility_of_element_located(self.authorization_pass_error)).text
+
     def recovery_password(self, email):
-        """ Checking recovery of the password """
+        """ Opening the login popup, clicking on "Забыли пароль" btn,
+        entering email, clicking "Получить новый пароль" btn"""
         login = self.wait.until(EC.presence_of_element_located(self.login_btn_header))
         login.click()
-        time.sleep(2)
 
         self.wait.until(EC.presence_of_element_located(self.forgot_pass_btn)).click()
         time.sleep(2)
@@ -86,14 +82,14 @@ class Loginization(BasePage):
         self.wait.until(EC.visibility_of_any_elements_located(self.new_pass_btn))[0] \
             .click()
 
-    def recovery_pass_unsuccess(self):
-        """ Checking recovery of the password with the invalid email"""
-        self.recovery_password(email='qevawenemmo-7199yopmail.com')
+    def get_error_msg_recovery_wrong_email(self):
+        """ Opening the login popup, clicking on "Забыли пароль" btn, entering email,
+        clicking "Получить новый пароль" btn", entering invalid email(without "@"), :return: recovery error msg text """
         return self.wait.until(EC.visibility_of_element_located(self.recovery_error_msg)).text
 
-    def recovery_pass_success(self):
-        """ Checking recovery of the password with the valid email"""
-        self.recovery_password(email='cemmozosyh-0165@yopmail.com')
+    def get_recovery_success_msg_text(self):
+        """ Opening the login popup, clicking on "Забыли пароль" btn, entering email,
+        clicking "Получить новый пароль" btn", entering valid email, :return: recovery success msg text"""
         self.wait.until(EC.visibility_of_any_elements_located(self.close_recovery_popup))[0]\
             .click()
         return self.wait.until(EC.visibility_of_element_located(self.recovery_pass_succ_msg)).text

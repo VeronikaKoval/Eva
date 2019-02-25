@@ -260,19 +260,20 @@ class Header(BasePage):
         return self.is_element_present(self.certificate_popup)
 
     def checking_wishlist(self):
-        """ Opening the 'Wishlist' as unregestered user, :return: page current url to verifying that it isn't available for unregistered account"""
+        """ Opening the 'Wishlist' as unregestered user,
+        :return: page current url to verifying that it isn't available for unregistered account"""
         self.wait.until(EC.presence_of_element_located(self.wishlist_btn)).click()
         return self.driver.current_url
 
     def checking_cart(self):
-        """ Opening the 'Cart' and verifying that it is empty for unregistered account"""
+        """ Opening the 'Cart', verifying that cart popup is opened
+        and it is empty for unregistered account"""
         self.wait.until(EC.presence_of_element_located(self.cart_btn)).click()
         return self.wait.until(EC.text_to_be_present_in_element(self.cart_popup, 'ВАША КОРЗИНА ПУСТА!'))
 
     def checking_logo(self):
         """ Opening the "Uhod" tab, clicking on the logo to verify that it returns to the main page"""
         self.wait.until(EC.presence_of_element_located(self.confirm_location_btn)).click()
-        time.sleep(2)
         self.wait.until(EC.presence_of_element_located(self.uhod_za_soboj_tab)).click()
         time.sleep(2)
         self.wait.until(EC.visibility_of_element_located(self.logo)).click()

@@ -1,9 +1,13 @@
-from BaseTest import BaseTest
+from TestSuites.BaseTest import BaseTest
 
 from Pages.MainPageHeader import Header
 
 
 class TestHeader(BaseTest):
+
+    def setup(self):
+        super(TestHeader, self).setup()
+        self.driver.get(self.base_url)
 
     def test_confirm_location(self):
         """ Confirmation of the suggested location 'Kyiv' and verifying the text of the chose location """
@@ -103,7 +107,7 @@ class TestHeader(BaseTest):
         assert 'Спасибо, что подписались на нашу рассылку.' in main_page.get_success_msg_text_newsletters()
 
     def test_open_tabs_on_pannel(self):
-        """ Clicking the "Stores" tab, then "News" tabon the upper panel,
+        """ Clicking the "Stores" tab, then "News", "Help", "Certificate" tab on the upper panel,
          :return: page current URL to verify that URL is changed"""
         main_page = Header()
         assert '/stockists/' in main_page.click_stores_tab()
@@ -111,17 +115,18 @@ class TestHeader(BaseTest):
         assert main_page.click_help_tab() is True
         assert main_page.click_certificate_tab() is True
 
-    def test_wishlist(self):
-        """ Opening the 'Wishlist' and verifying that it isn't available for unregistered account """
+    def test_open_wishlist(self):
+        """ Opening the 'Wishlist' as unregistered user, verifying that login popup is opened
+        and it is empty for unregistered user """
         main_page = Header()
         assert '#account_login' in main_page.checking_wishlist()
 
-    def test_cart(self):
-        """ Opening the 'Cart' and verifying that it isn't available for unregistered account"""
+    def test_open_cart(self):
+        """ Opening the 'Cart', verifying that cart popup is opened and it is empty for unregistered account"""
         main_page = Header()
         assert main_page.checking_cart() is True
 
     def test_logo(self):
         """ Opening the "Uhod" tab, clicking on the logo to verify that it returns to the main page"""
         main_page = Header()
-        assert 'https://eva.ua/024/uhod-soboj/' not in main_page.checking_logo()
+        assert 'uhod-soboj/' not in main_page.checking_logo()
