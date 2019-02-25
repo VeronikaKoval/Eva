@@ -1,5 +1,5 @@
 from BaseTest import BaseTest
-from ProductPage import List
+from Pages.ProductPage import List
 
 
 class TestProductPage(BaseTest):

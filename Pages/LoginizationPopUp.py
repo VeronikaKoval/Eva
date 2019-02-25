@@ -2,7 +2,7 @@ import time
 
 from selenium.webdriver.common.by import By
 
-from BasePage import BasePage
+from Pages.BasePage import BasePage
 
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -27,9 +27,8 @@ class Loginization(BasePage):
     mail_field_in_forgot_pass = (By.CSS_SELECTOR, 'input#email_address')
     new_pass_btn = (By.CSS_SELECTOR, 'button.action.submit.primary')
     recovery_error_msg = (By.CSS_SELECTOR, 'div#email_address-error')
-    recovery_pass_succ_msg = (By.CSS_SELECTOR, 'div.message-success') #(By.CSS_SELECTOR, 'div.page messages')
-    close_recovery_popup = (By.CSS_SELECTOR, 'button[data-role="closeBtn"]') #(By.XPATH, '//aside[contains(@class,"_inner-scroll _show")]//button[contains(@type,"button")]')
-
+    recovery_pass_succ_msg = (By.CSS_SELECTOR, 'div.message-success')
+    close_recovery_popup = (By.CSS_SELECTOR, 'button[data-role="closeBtn"]')
 
     # Axctions
 

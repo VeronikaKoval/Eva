@@ -1,5 +1,5 @@
 from BaseTest import BaseTest
-from Loginization import Loginization
+from Pages.LoginizationPopUp import Loginization
 
 
 class TestLoginization(BaseTest):
