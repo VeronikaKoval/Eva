@@ -32,3 +32,10 @@ class BasePage:
             return True
         except:
             return False
+
+    def is_element_visible(self, locator):
+        try:
+            self.wait.until(EC.visibility_of_element_located(locator))
+            return True
+        except:
+            return False
