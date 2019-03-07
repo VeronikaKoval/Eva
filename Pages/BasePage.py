@@ -39,3 +39,7 @@ class BasePage:
             return True
         except:
             return False
+
+    def get_page_url(self):
+        """ Getting the page url, :return: page current URL"""
+        return self.driver.current_url

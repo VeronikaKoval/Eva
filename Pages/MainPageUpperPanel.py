@@ -1,9 +1,11 @@
 import random
+import time
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
 from Pages.BasePage import BasePage
+from Pages.LoginizationPopUp import LoginPopup
 
 
 class Panel(BasePage):
@@ -19,6 +21,10 @@ class Panel(BasePage):
     loc_text_popup = (By.CSS_SELECTOR, 'span.call-request-massage')
 
     select_lang = (By.CSS_SELECTOR, 'a[href="#"]')
+
+    login_btn_header = (By.CSS_SELECTOR, 'a.login-popup')
+    personal_account_btn = (By.CSS_SELECTOR, 'a.js-authorization-account-popup.show-desktop')
+    personal_account_popup = (By.CSS_SELECTOR, 'div.block-authorization-popup.show-desktop.ui-dialog-content.ui-widget-content[id="ui-id-10"]') #(By.CLASS_NAME, 'authorization-popup-list')
 
     our_projects_block = (By.CSS_SELECTOR, 'span.eva-icon-arr-down')
     drop_down_block_our_projects = (By.CSS_SELECTOR, 'ul.block-mozayka ')
@@ -36,7 +42,7 @@ class Panel(BasePage):
     def confirm_default_location(self):
         """ Clicking 'Ok' button to confirm the suggested city"""
         self.wait.until(EC.presence_of_element_located(self.confirm_location_btn),
-            'There is no "Confirm location" button').click()
+                        'There is no "Confirm location" button').click()
         return self
 
     def get_loc_text(self):
@@ -44,13 +50,14 @@ class Panel(BasePage):
         return self.wait.until(EC.presence_of_element_located(self.location_top)).text
 
     def click_choose_another_loc_btn(self):
+        """ Clicking "Choose another location" btn in the appeared location popup """
         self.wait.until(EC.presence_of_element_located(self.choose_another_location_btn),
-            'There is no "Choose another location" button').click()
+                        'There is no "Choose another location" button').click()
         return self
 
     def choose_location(self):
         """ Clicking 'Choose another location' button,
-        choosing 'Lviv' city as current city from the location drop-down list, :return: main Page"""
+        choosing 'Lviv' city as current city from the location drop-down list """
         self.click_choose_another_loc_btn()
         self.wait.until(EC.presence_of_element_located(self.Lviv), 'There is no such city as Lviv').click()
         return self
@@ -77,9 +84,14 @@ class Panel(BasePage):
         self.wait.until(EC.presence_of_element_located(self.select_lang)).click()
         return self
 
-    def get_page_url(self):
-        """ Getting the page url, :return: page current URL"""
-        return self.driver.current_url
+    def is_login_btn_visible(self):
+        """ Checking if the login button is visible"""
+        return self.is_element_visible(self.login_btn_header)
+
+    def open_login_popup(self):
+        """ Clicking the login button, :return: the login popup is opened"""
+        self.wait.until(EC.presence_of_element_located(self.login_btn_header)).click()
+        return LoginPopup()
 
     def is_our_projects_visible(self):
         """ Clicking on the 'Наши проекты' button, Checking the presence of "Our projects" block'"""
@@ -105,3 +117,11 @@ class Panel(BasePage):
         """  Opening the "Certificate" tab and verifying the popup is opened"""
         self.wait.until(EC.presence_of_element_located(self.certificate_tab)).click()
         return self.is_element_visible(self.certificate_popup)
+
+    def is_popup_present_after_authorization(self):
+        """ Clicking on the personal account btn after authorization, checking if the popup visible,
+        :return: True, if a popup visible after clicking in your account btn"""
+        personal_acc_btn = self.wait.until(EC.presence_of_element_located(self.personal_account_btn))
+        personal_acc_btn.click()
+        time.sleep(1)
+        return self.is_element_visible(self.personal_account_popup)
