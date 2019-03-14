@@ -34,7 +34,8 @@ class Header(BasePage):
     # Actions
 
     def call_back(self, phone_number):
-        """ Clicking on feedback link to get feedback pop up, clicking on the phone field """
+        """ Clicking on feedback link to get feedback popup, clicking on the phone field, entering phone number,
+        :return: object of page """
         self.wait.until(EC.presence_of_element_located(self.confirm_location_btn)).click()
         time.sleep(2)
         self.wait.until(EC.presence_of_element_located(self.feedback_link)).click()
@@ -55,13 +56,14 @@ class Header(BasePage):
         return self.wait.until(EC.presence_of_element_located(self.success_phone_valid)).text
 
     def is_search_field_visible(self):
-        """Checking if the search field is present"""
+        """ Checking if the search field is visible,
+        :return: True if the search field is visible"""
         self.wait.until(EC.presence_of_element_located(self.confirm_location_btn)).click()
         time.sleep(2)
         return self.is_element_visible(self.search_field)
 
     def enter_query_into_search_field(self, query):
-        """ Clicking on the search field and entering search query """
+        """ Clicking on the search field and entering search query, :return: object of page"""
         self.wait.until(EC.presence_of_element_located(self.confirm_location_btn)).click()
         time.sleep(2)
         search = self.wait.until(EC.presence_of_element_located(self.search_field))
@@ -69,10 +71,10 @@ class Header(BasePage):
         search.send_keys(query)
         return self
 
-    def is_search_result_block_present(self):
+    def is_search_result_block_visible(self):
         """ Clicking on the search field, entering valid search query
-        and checking whether the block with search results is present"""
-        return self.is_element_present(self.search_results_block)
+        and checking whether the block with search results is visible"""
+        return self.is_element_visible(self.search_results_block)
 
     def get_error_msg_for_invalid_query(self):
         """ Clicking on the search field, entering invalid search query,
@@ -85,26 +87,31 @@ class Header(BasePage):
 
     def open_wishlist(self):
         """ Opening the 'Wishlist' as unregestered user,
-        :return: page current url to verifying that it isn't available for unregistered account"""
-        self.wait.until(EC.presence_of_element_located(self.wishlist_btn)).click()
-        return self
+        :return: object of page"""
+        return self.wait.until(EC.presence_of_element_located(self.wishlist_btn)).click()
 
     def open_cart(self):
-        """ Opening the 'Cart', verifying that cart popup is opened
-        and it is empty for unregistered account"""
-        self.wait.until(EC.presence_of_element_located(self.cart_btn)).click()
+        """ Opening the 'Cart', verifying that cart popup is opened and it is empty for unregistered account,
+        :return: object of page """
+        return self.wait.until(EC.presence_of_element_located(self.cart_btn)).click()
+
+    def is_cart_popup_visible(self):
+        """ Checking if the cart popup is opened and visible,
+        :return: True if the cart popup is visible"""
         return self.is_element_visible(self.cart_popup)
 
     def get_text_from_cart_popup(self):
-        """ Opening cart popup as unregestered user, getting text from popup, :return: text"""
+        """ Opening cart popup as unregestered user, getting text from popup,
+        :return: text"""
         return self.wait.until(EC.visibility_of_element_located(self.cart_popup_msg)).text
 
     def is_logo_visible(self):
-        """ Checking if the logo is visible"""
+        """ Checking if the logo is visible, :return: True if logo is visible"""
         return self.is_element_visible(self.logo)
 
     def click_logo(self):
-        """ Opening the "Uhod" tab, clicking on the logo to verify that it returns to the main page"""
+        """Clicking the "Uhod" tab to open "Uhod" page, clicking on the logo to verify that it returns to the main page,
+        :return: object of page """
         self.wait.until(EC.presence_of_element_located(self.confirm_location_btn)).click()
         self.wait.until(EC.presence_of_element_located(self.uhod_za_soboj_tab)).click()
         time.sleep(2)

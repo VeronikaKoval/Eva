@@ -35,7 +35,7 @@ class TestHeader(BaseTest):
         and checking whether the block with search results is present """
         header = Header()
         header.enter_query_into_search_field('духи')
-        assert header.is_search_result_block_present() is True, 'The search result block is absent for a valid query'
+        assert header.is_search_result_block_visible() is True, 'The search result block is absent for a valid query'
 
     def test_invalid_search_results(self):
         """ Clicking on the search field, entering invalid search query,
@@ -55,7 +55,8 @@ class TestHeader(BaseTest):
     def test_open_cart(self):
         """ Opening the 'Cart', verifying that cart popup is opened and it is empty for unregistered account"""
         header = Header()
-        assert header.open_cart() is True, 'The cart popup is not visible'
+        header.open_cart()
+        assert header.is_cart_popup_visible()is True, 'The cart popup is not visible'
         assert 'ВАША КОРЗИНА ПУСТА!' in header.get_text_from_cart_popup(), 'The text in the popup is different'
 
     def test_logo(self):

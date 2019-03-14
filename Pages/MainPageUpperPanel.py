@@ -24,11 +24,11 @@ class Panel(BasePage):
 
     login_btn_header = (By.CSS_SELECTOR, 'a.login-popup')
     personal_account_btn = (By.CSS_SELECTOR, 'a.js-authorization-account-popup.show-desktop')
-    personal_account_popup = (By.CSS_SELECTOR, 'div.block-authorization-popup.show-desktop.ui-dialog-content.ui-widget-content[id="ui-id-10"]') #(By.CLASS_NAME, 'authorization-popup-list')
+    personal_account_popup = (By.CSS_SELECTOR, 'div.block-authorization-popup.show-desktop.ui-dialog-content.'
+        'ui-widget-content[id="ui-id-10"]')
 
     our_projects_block = (By.CSS_SELECTOR, 'span.eva-icon-arr-down')
     drop_down_block_our_projects = (By.CSS_SELECTOR, 'ul.block-mozayka ')
-    # mozayka = (By.CSS_SELECTOR, 'a[href="https://mozayka.com.ua/"]')
 
     stores_tab = (By.CSS_SELECTOR, 'a[href$="stockists/"]')
     news_tab = (By.CSS_SELECTOR, 'a[href$="novosti/"]')
@@ -39,8 +39,9 @@ class Panel(BasePage):
     certificate_popup = (By.CSS_SELECTOR, 'div.block-card__center')
 
     # Actions
+
     def confirm_default_location(self):
-        """ Clicking 'Ok' button to confirm the suggested city"""
+        """ Clicking 'Ok' button to confirm the suggested city, :return: object of page"""
         self.wait.until(EC.presence_of_element_located(self.confirm_location_btn),
                         'There is no "Confirm location" button').click()
         return self
@@ -56,69 +57,73 @@ class Panel(BasePage):
         return self
 
     def choose_location(self):
-        """ Clicking 'Choose another location' button,
-        choosing 'Lviv' city as current city from the location drop-down list """
+        """ Clicking 'Choose another location' button, choosing 'Lviv' city as current city
+        from the location drop-down list, :return: object of page"""
         self.click_choose_another_loc_btn()
         self.wait.until(EC.presence_of_element_located(self.Lviv), 'There is no such city as Lviv').click()
         return self
 
     def get_loc_text_from_popup(self):
-        """ Getting the location text from the location popup, after changing the location, :return: text"""
+        """ Getting the location text from the location popup, after changing the location,
+        :return: text"""
         return self.wait.until(EC.presence_of_element_located(self.location_text)).text
 
     def choose_random_loc(self):
-        """ Clicking 'Choose another location' button, choosing random location from the list of locations """
+        """ Clicking 'Choose another location' button, choosing random location from the list of locations
+        :return: object of page"""
         self.click_choose_another_loc_btn()
-
         all_cities = self.wait.until(EC.presence_of_all_elements_located(self.each_location))
         one_of_the_cities = random.choice(all_cities)
         one_of_the_cities.click()
-        try:
-            self.wait.until(EC.visibility_of_element_located(self.changed_loc_popup))
-            return True
-        except:
-            return False
-
-    def change_language(self):
-        """ Changing the language of the site to UKR on the upper panel"""
-        self.wait.until(EC.presence_of_element_located(self.select_lang)).click()
         return self
 
+    def is_location_changed_popup_visible(self):
+        """ Checking if the popup with changed location is visible,
+        :return: True if the popup with chosen random location is visible """
+        return self.is_element_visible(self.changed_loc_popup)
+
+    def change_language(self):
+        """ Changing the language of the site to Ukrainian on the upper panel, :return: object of page"""
+        return self.wait.until(EC.presence_of_element_located(self.select_lang)).click()
+
     def is_login_btn_visible(self):
-        """ Checking if the login button is visible"""
+        """ Checking if the login button is visible,
+        :return: True, if login btn is visible"""
         return self.is_element_visible(self.login_btn_header)
 
     def open_login_popup(self):
-        """ Clicking the login button, :return: the login popup is opened"""
+        """ Clicking the login button to open the login PopUp,
+         :return: object: LoginPopup"""
         self.wait.until(EC.presence_of_element_located(self.login_btn_header)).click()
         return LoginPopup()
 
     def is_our_projects_visible(self):
-        """ Clicking on the 'Наши проекты' button, Checking the presence of "Our projects" block'"""
+        """ Clicking on the 'Наши проекты' button, Checking the presence of "Our projects" block,
+        :return: True, if "Our projects" block is visible"""
         self.wait.until(EC.presence_of_element_located(self.our_projects_block)).click()
         return self.is_element_visible(self.drop_down_block_our_projects)
 
     def click_stores_tab(self):
-        """ Clicking the "Stores" tab, :return: page current URL"""
-        self.wait.until(EC.presence_of_element_located(self.stores_tab)).click()
-        return self.driver.current_url
+        """ Clicking the "Stores" tab, :return: object of page"""
+        return self.wait.until(EC.presence_of_element_located(self.stores_tab)).click()
 
     def click_news_tab(self):
-        """ Opening the "News" tab and returning page current URL"""
-        self.wait.until(EC.presence_of_element_located(self.news_tab)).click()
-        return self.driver.current_url
+        """ Opening the "News" tab, :return: object of page"""
+        return self.wait.until(EC.presence_of_element_located(self.news_tab)).click()
 
     def click_help_tab(self):
-        """ Opening the "Help" tab on the upper panel and verifying that popup is opened """
+        """ Opening the "Help" tab on the upper panel and verifying that popup is opened,
+        :return True if the popup is visible"""
         self.wait.until(EC.visibility_of_element_located(self.help_tab)).click()
         return self.is_element_visible(self.help_popup)
 
     def click_certificate_tab(self):
-        """  Opening the "Certificate" tab and verifying the popup is opened"""
+        """  Opening the "Certificate" tab and verifying the popup is opened,
+        :return True if the popup is visible"""
         self.wait.until(EC.presence_of_element_located(self.certificate_tab)).click()
         return self.is_element_visible(self.certificate_popup)
 
-    def is_popup_present_after_authorization(self):
+    def is_popup_visible_after_authorization(self):
         """ Clicking on the personal account btn after authorization, checking if the popup visible,
         :return: True, if a popup visible after clicking in your account btn"""
         personal_acc_btn = self.wait.until(EC.presence_of_element_located(self.personal_account_btn))

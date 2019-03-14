@@ -1,4 +1,4 @@
-from selenium.webdriver.common.by import By
+import time
 
 from TestSuites.BaseTest import BaseTest
 
@@ -27,43 +27,64 @@ class TestBody(BaseTest):
             'The drop down menu is not visible after hovering "Parfumeria" menu item'
         assert main_page.hover_menu_item_dlja_domy() is True, \
             'The drop down menu is not visible after hovering "Tovary dlja domu" menu item'
-        # assert main_page.hover_menu_item_himija() is True, ''
+        assert main_page.hover_menu_item_himija() is True, \
+            'The drop down menu is not visible after hovering "Himija" menu item'
         assert main_page.hover_menu_item_kosmetika() is True, \
             'The drop down menu is not visible after hovering "Kosmetika dekoratuvna" menu item'
-        # assert main_page.hover_menu_item_dlja_muzchin() is True, ''
+        assert main_page.hover_menu_item_dlja_muzchin() is True, \
+            'The drop down menu is not visible after hovering "Dlja muzhchin" menu item'
         assert main_page.hover_menu_item_dlja_ditej() is True, \
             'The drop down menu is not visible after hovering "Tovary dlja ditej" menu item'
 
-
-    def test_presence_of_presence_of_all_blocks(self):
-        """ Checking if the "Product block", "Linejka tovarov", "Nabory", "Brands" are present """
+    def test_visibility_of_all_blocks(self):
+        """ Checking if the banner. side banner, "Akzii", "Top prodazh", "Nabory", "Popular categories",
+        "Brands"  blocks are present and visible """
         main_page = Body()
-        assert main_page.is_pokupajte_vigodno_visible() is True,\
-            'The block "Pokupajte vigodno" is not visible or absent'
-        assert main_page.is_linejka_tovarov_visible() is True, \
-            'The block "Linejka tovarov" is not visible or absent'
-        assert main_page.is_nabory_visible() is True, \
-            'The block "Nabory" is not visible or absent'
-        assert main_page.is_brands_block_visible() is True, \
-            'The block "Brands" is not visible or absent' ## ПЕРЕПИСАТИ ВІДПОВІДНО ДО ОНОВЛЕНЬ
+        assert main_page.is_side_banner_visible() is True, 'Side banner is not visible or absent'
+        assert main_page.is_slider_visible() is True, 'The slider is not visible'
+        assert main_page.is_timer_visible() is True, 'The timer is not visible or absent'
+        # assert main_page.is_akzii_block_visible is True, 'Block "Akzii" is not visible or absent'
+        # # self.driver.execute_script("window.scrollTo(0, 2300)")
+        assert main_page.is_top_prodazh_visible is True, 'Block "Top prodazh" is not visible or absent'
+        assert main_page.is_popular_categories_visible() is True, 'Block "Popular categories" is not visible or absent'
+        assert main_page.is_brands_block_visible() is True, 'Block "Brands" is not visible'
+        assert main_page.is_mozaika_block_visible() is True, 'Block "Mosaica" is not visible or absent'
+        assert main_page.is_blog_visible() is True, 'Blog is not visible or absent'
+
+    def test_buttons_in_blocks(self):
+        """ Clicking "All promotions" btn, "All brands", "Go to blog" buttons, get pages current Urls to verify
+        that new page is opened"""
+        main_page = Body()
+        main_page.click_all_promotion_btn()
+        assert 'promotion' in main_page.get_page_url(), 'URL is different and doesnt match "promotion" '
+        self.driver.execute_script("window.history.go(-1)")
+        main_page.click_all_brands_btn()
+        assert 'brands' in main_page.get_page_url(), 'URL doesnt match "brands"'
+        self.driver.execute_script("window.history.go(-1)")
+        main_page.open_blog()
+        assert main_page.get_page_url() == 'https://evaportal.com.ua/', 'URL doesnt match "evaportal.com.ua" '
 
     def test_changing_slider_photos(self):
         """ Checking if  the slider is present. Clicking right scroll button on the slider to switch image.
         Getting the photo src to verify that photos are changing, :return: photo src"""
         main_page = Body()
-        assert main_page.is_slider_visible() is True, 'The slider is not visible'
-        for i in range(7):
+        for i in range(4):
             photo_src = main_page.get_slider_photo_src()
             main_page.click_scroll_btn()
             assert photo_src != main_page.get_slider_photo_src(), \
-                'Photo src is the same, photos in the slider are not changing ' ## ПЕРЕПИСАТИ
+                'Photo src is the same, photos in the slider are not changing '
 
-    def test_is_more_btn_visible(self):
+    def test_changing_brands_photos(self):
         """ """
         main_page = Body()
-        self.driver.execute_script("window.scrollTo(0, 620)")
-        assert main_page.is_more_btn_visible() is True, \
-            'More button is not visible or absent'
-        main_page.click_more_btn()
-        assert 'https://eva.ua/promotion/' in main_page.get_page_url(), \
-            'The page "Promotion" is not opened or the URL is different' ## ПЕРЕПИСАТИ
+        assert main_page.is_brands_block_visible() is True, 'Block "Brands" is not visible'
+        # for i in range(2):
+        #     img_src = main_page.get_brand_img_src()
+        #     main_page.click_brands_scroll_btn()
+        #     print(img_src)
+            # assert img_src != main_page.get_brand_img_src(), \
+            #     'Photo src is the same, photos in the "Brands" block are not changing '
+        main_page.click_brands_scroll_btn()
+        time.sleep(2)
+        assert main_page.get_brand_img_src() != main_page.get_next_brand_img_src(), \
+            'Photo src is the same, brands images are not changing'
