@@ -28,3 +28,11 @@ class RecoveryPassPopUp(BasePopup):
         """ Opening the login popup, clicking on "Забыли пароль" btn, entering email,
         clicking "Получить новый пароль" btn", entering invalid email(without "@"), :return: recovery error msg text """
         return self.wait.until(EC.visibility_of_element_located(self.recovery_error_msg)).text
+
+    def is_get_new_pass_btn_visible(self):
+        """ """
+        return self.is_element_visible(self.new_pass_btn)
+
+    def is_mail_in_recovery_visible(self):
+        """ """
+        return self.is_element_visible(self.mail_field_in_recovery)

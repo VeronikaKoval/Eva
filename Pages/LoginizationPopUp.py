@@ -8,6 +8,7 @@ from Pages.BasePage import BasePage
 from selenium.webdriver.support import expected_conditions as EC
 
 from Pages.BasePopUp import BasePopup
+
 from Pages.RecoveryPassPopUp import RecoveryPassPopUp
 
 
@@ -33,10 +34,9 @@ class LoginPopup(BasePage):
 
     forgot_pass_btn = (By.CSS_SELECTOR, 'div.forgot-password')
 
-    # close_popup_btn = (By.CSS_SELECTOR, 'button[data-role="closeBtn"]')
     close_popup_btn = (By.XPATH, '/html/body/div[3]/aside[1]/div[2]/header/button')
 
-    recovery_pass_succ_msg = (By.CSS_SELECTOR, 'div.message-success.success.message') #(By.CSS_SELECTOR, 'div[data-placeholder="messages"]') #(By.CSS_SELECTOR, 'div.message-success')
+    recovery_pass_succ_msg = (By.CSS_SELECTOR, 'div.message-success.success.message')
 
     # Actions
 

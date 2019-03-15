@@ -11,7 +11,7 @@ class TestPanel(BaseTest):
         self.driver.get(self.base_url)
 
     def test_confirm_location(self):
-        """ Confirmation of the suggested location 'Kyiv' and verifying the text of the chose location """
+        """ Clicking "Confirm loc" btn on the suggested location 'Kyiv' and verifying the text of the chosen location"""
         panel = Panel()
         panel.confirm_default_location()
         assert 'Киев' in panel.get_loc_text(), 'The location is not Kyiv'
@@ -28,31 +28,39 @@ class TestPanel(BaseTest):
         panel = Panel()
         panel.choose_random_loc()
         assert panel.is_location_changed_popup_visible() is True, 'The popup with new location is not visible or absent'
+        self.driver.save_screenshot('screenie.png')
 
     def test_changing_lang(self):
-        """ Changing the language of the site from RUS to UKR on the upper panel,
-        :return: page current URL to verify that language has changed to URK """
+        """ Changing the language of the site from RUS to UKR on the upper panel, getting page URL to verify that
+        language has changed to URK """
         panel = Panel()
         panel.change_language()
         assert 'ua/' in panel.get_page_url(), 'ua/ is absent in the current page URl'
 
     def test_visibility_of_login_btn(self):
+        """ Checking if the login button is visible """
         panel = Panel()
         assert panel.is_login_btn_visible() is True, 'The login btn is not visible'
 
     def test_our_projects(self):
-        """  Clicking on the 'Наши проекты' button on the upper panel, checking the presence of "Our projects" block"""
+        """  Clicking on the 'Наши проекты' button on the upper panel, checking the presence and
+        visibility of "Our projects" block """
         panel = Panel()
         assert panel.is_our_projects_visible() is True, 'The "Наши проекты" block is not visible'
 
-    def test_open_tabs_on_pannel(self):
-        """ Clicking the "Stores" tab, then "News", "Help", "Certificate" tab on the upper panel,
-         :return: page current URL to verify that URL is changed"""
+    def test_click_tabs_on_pannel(self):
+        """ Clicking the "Stores", then "News", tab on the upper panel, getting page current
+        URL to check that page has opened and Url changed """
         panel = Panel()
         panel.click_stores_tab()
         main_page = Body()
         assert '/stockists/' in main_page.get_page_url(), '/stockists/ is absent in the current page URl'
         panel.click_news_tab()
         assert 'novosti' in main_page.get_page_url(),  'novosti is absent in the current page URl'
+
+    def test_open_tabs_on_panel(self):
+        """ Clicking the "Help" and then "Certificate" tab on the upper panel to check whether the popup is opened
+        and visible"""
+        panel = Panel()
         assert panel.click_help_tab() is True, 'The "Help" popup is not visible'
         assert panel.click_certificate_tab() is True, 'The "Certificate" popup is not visible'

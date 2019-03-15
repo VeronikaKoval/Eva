@@ -11,7 +11,7 @@ class TestHeader(BaseTest):
 
     def test_call_back_unsuccessful(self):
         """ Clicking on feedback link to get feedback pop up, clicking on the phone field,
-        entering invalid phone number, :return: text of the error message"""
+        entering invalid phone number, getting text of the error message"""
         header = Header()
         header.call_back(phone_number='00000000')
         assert 'Введите корректный номер' in header.get_error_text_with_invalid_number(), \
@@ -19,7 +19,7 @@ class TestHeader(BaseTest):
 
     def test_call_back_successful(self):
         """ Clicking on feedback link to get feedback pop up, clicking on the phone field,
-                entering valid phone number, :return: text of the success message"""
+                entering valid phone number, getting text of the success message"""
         header = Header()
         header.call_back(phone_number='123456789')
         assert 'СПАСИБО ЗА ОБРАЩЕНИЕ!' in header.get_successful_msg_text_with_valid_number(), \
@@ -39,7 +39,7 @@ class TestHeader(BaseTest):
 
     def test_invalid_search_results(self):
         """ Clicking on the search field, entering invalid search query,
-        :return: text of the error for the invalid query to verify the text of the error """
+        getting text of the error for the invalid query """
         header = Header()
         header.enter_query_into_search_field('xdcydcyu')
         assert 'Извините, ничего не найдено для "xdcydcyu"' in header.get_error_msg_for_invalid_query(), \

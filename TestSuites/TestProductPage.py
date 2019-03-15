@@ -35,21 +35,21 @@ class TestProductPage(BaseTest):
 
     def test_sort_price_desc(self):
         """ Opening the sorting drop down, clicking sorting from expensive to cheap,
-        :return: page current URL to verifying that page URL is changed """
+        check page current URL to verifying that page URL is changed """
         product_list = List()
         product_list.apply_sort_price_decs()
         assert '/?product_list_order=price' in product_list.get_page_url(), 'URL is different'
 
     def test_sort_asc(self):
         """ Opening the sorting drop down, clicking sorting from cheap to expensive,
-        :return: page current URL to verifying that page URL is changed """
+        check page current URL to verifying that page URL is changed """
         product_list = List()
         product_list.apply_sort_price_asc()
         assert 'price&product_list_dir=asc' in product_list.get_page_url(), 'URL is different'
 
     def test_manual_price_filter(self):
         """ Scrolling page to manual price filter, applying manual filter for sorting products by price,
-        :return: price value from the price box to verify that price box contains chosen price """
+        get price value from the price box to verify that price box contains chosen price """
         product_list = List()
         product_list. apply_manual_price_filter()
         assert '102' in product_list.get_text_from_price_box(), 'The price is different'

@@ -1,4 +1,3 @@
-import time
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -40,9 +39,8 @@ class Body(BasePage):
 
     slider = (By.CSS_SELECTOR, 'div.action-banners-slider-block')
     side_banner = (By.CSS_SELECTOR, 'div.side-banners')
-    akzii_block =  (By.CSS_SELECTOR, '#maincontent > div.columns > div:nth-child(2)')
-    # (By.CSS_SELECTOR, 'div.action-items') #(By.CSS_SELECTOR, 'div.action-banners-wrap')
-    top_prodazh = (By.CSS_SELECTOR, 'div#amasty-shopby-product-list') #(By.XPATH, '//*[@id="maincontent"]/div[2]/div[4]') #(By.CSS_SELECTOR, 'div.best-selling-wrap')
+    akzii_block = (By.CSS_SELECTOR, 'div.action-items')
+    top_prodazh = (By.CSS_SELECTOR, 'div#amasty-shopby-product-list')
     popular_categories = (By.CSS_SELECTOR, 'div.popular-categories-wrap')
     brands_block = (By.CSS_SELECTOR, 'div.brands-list.owl-carousel.owl-loaded.owl-drag')
     mosaica = (By.CSS_SELECTOR, 'div.mosaic-block')
@@ -60,7 +58,7 @@ class Body(BasePage):
     brand_base_img = (By.CSS_SELECTOR, '#maincontent > div.columns > div:nth-child(6) > '
     'div > div.brands-list.owl-carousel.owl-loaded.owl-drag > div.owl-stage-outer > div > div > div > a > div > picture > img')
     brand_img_3 = (By.CSS_SELECTOR, '#maincontent > div.columns > div:nth-child(6) > div > div.brands-list.owl-carousel.owl-loaded.owl-drag > '
-                        'div.owl-stage-outer > div > div:nth-child(3) > div > a > div > picture > img')
+                'div.owl-stage-outer > div > div:nth-child(3) > div > a > div > picture > img')
     brand_scroll_btn = (By.CSS_SELECTOR, 'button.owl-next')
 
     timer = (By.CSS_SELECTOR, 'div.timer_block')

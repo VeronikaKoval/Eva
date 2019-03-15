@@ -12,7 +12,7 @@ class TestFooter(BaseTest):
         self.driver.get(self.base_url)
 
     def test_visibility_of_blocks(self):
-        """ Checking if all blocks in footer is visible, :return True if block is visible"""
+        """ Checking if " Projects", "Help", " Hotline", "Subscribe" blocks in footer are visible """
         footer = Footer()
         assert footer.is_projects_visible() is True, 'Block "Projects" is not visible or absent'
         assert footer.is_help_visible() is True, 'Block "Help" is not visible or absent'
@@ -24,16 +24,14 @@ class TestFooter(BaseTest):
 
 
     def test_subscribe_unsuccessful(self):
-        """ Clicking on the subscribe field, entering invalid email,
-        :return: text of the error message to verify the error msg text """
+        """ Checking the subscribe functionality with invalid email, get text of the error message """
         footer = Footer()
         footer.subscribe_for_news('ruzifawomaheximail.com')
         assert 'Пожалуйста, введите правильный адрес электронной почты' in footer.get_error_msg_text_newsletters(),\
             'The error message is different or absent'
 
     def test_subscribe_successful(self):
-        """ Clicking on the subscribe field, entering valid email,
-        :return: text of the success message to verify the success msg text"""
+        """ Checking the subscribe functionality with valid email, get text of the success message"""
         footer = Footer()
         footer.subscribe_for_news('baylan.oluwatimilehin@plutocow.com')
         assert 'Спасибо, что подписались на нашу рассылку.' in footer.get_success_msg_text_newsletters(), \
