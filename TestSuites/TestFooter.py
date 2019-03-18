@@ -42,7 +42,7 @@ class TestFooter(BaseTest):
         footer = Footer()
         footer.click_Google()
         self.driver.switch_to.window(self.driver.window_handles[1])
-        assert footer.get_page_url() == 'https://plus.google.com/+EVAua500', 'URL doesnt match "plus.google.com"'
+        assert 'plus.google.com' in footer.get_page_url(), 'URL doesnt match "plus.google.com"'
 
     def test_FB(self):
         """ Clicking on Facebook link, verifying that it is opened in a new tab, checking page URL"""

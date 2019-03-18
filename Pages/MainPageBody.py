@@ -70,14 +70,14 @@ class Body(BasePage):
     def is_main_drop_down_menu_present(self):
         """ Clicking on 'Все разделы' menu item,
          :return: True if main drop down menu is visible after clicking"""
-        self.wait.until(EC.presence_of_element_located(self.confirm_location_btn)).click()
+        self.click(self.confirm_location_btn, 'Confirm suggested loc btn')
         self.wait.until(EC.presence_of_element_located(self.all_menu_items)).click()
         return self.is_element_visible(self.left_side_menu)
 
     def hover_menu_item_uhod(self):
         """ Clicking on 'Все разделы' menu item, hovering "Uhod" menu item,
         :return: True if drop down menu is visible after hovering category"""
-        self.wait.until(EC.presence_of_element_located(self.confirm_location_btn)).click()
+        self.click(self.confirm_location_btn, 'Confirm suggested loc btn')
         self.wait.until(EC.presence_of_element_located(self.all_menu_items)).click()
         self.hover_element(self.uhod_mi)
         return self.is_element_visible(self.drop_down_menu_uhod)
@@ -194,7 +194,7 @@ class Body(BasePage):
     def click_scroll_btn(self):
         """ Clicking right scroll button on the slider to switch image,
         :return: object of page """
-        return self.click(self.slider_scroll_btn)
+        return self.click(self.slider_scroll_btn, 'Scroll button')
 
     def get_brand_img_src(self):
         """ Getting the photo src in the "Brands" block to verify that photos are changing,
@@ -214,8 +214,6 @@ class Body(BasePage):
     def click_brands_scroll_btn(self):
         """ Clicking right scroll button on the slider to switch image,
         :return: object of page"""
-        # self.click(self.brand_scroll_btn)
-        # self.wait.until(EC.element_to_be_clickable(self.brand_scroll_btn)).click()
         self.wait.until(EC.visibility_of_any_elements_located(self.slider_scroll_btn))[2].click()
         return self
 

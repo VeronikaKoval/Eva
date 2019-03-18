@@ -13,7 +13,8 @@ class TestPanel(BaseTest):
     def test_confirm_location(self):
         """ Clicking "Confirm loc" btn on the suggested location 'Kyiv' and verifying the text of the chosen location"""
         panel = Panel()
-        panel.confirm_default_location()
+        assert panel.is_confirm_loc_btn_visible() is True, '"Confirm location" btn is not visible'
+        panel.click_confirm_suggested_location()
         assert 'Киев' in panel.get_loc_text(), 'The location is not Kyiv'
 
     def test_change_location(self):

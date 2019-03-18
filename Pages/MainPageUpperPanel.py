@@ -40,11 +40,14 @@ class Panel(BasePage):
 
     # Actions
 
-    def confirm_default_location(self):
-        """ Clicking 'Ok' button to confirm the suggested city, :return: object of page"""
-        self.wait.until(EC.presence_of_element_located(self.confirm_location_btn),
-                        'There is no "Confirm location" button').click()
-        return self
+    def click_confirm_suggested_location(self):
+        """ Clicking 'Yes' button to confirm the suggested city, :return: object of page"""
+        return self.click(self.confirm_location_btn, 'Confirm loc btn')
+
+    def is_confirm_loc_btn_visible(self):
+        """ Checking if the "Confirm location" btn is visible,
+        :return: True, if button is visible"""
+        return self.is_element_visible(self.confirm_location_btn)
 
     def get_loc_text(self):
         """ Getting the location text from the upper panel, :return: text"""

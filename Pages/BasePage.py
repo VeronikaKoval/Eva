@@ -25,10 +25,10 @@ class BasePage:
     #     element = self.wait.until(EC.presence_of_element_located(locator), 'There is no such element')
     #     element.click()
 
-    def click(self, locator, element_name='Елемент'):
+    def click(self, locator, element_name):
         """ Looking for element with given locator, check if element is clickable and click on the element
         :param locator
-        :param element_name: name of element which used in error message
+        :param element_name: name of element
         :return: page element """
         required_item = self.wait.until(EC.presence_of_element_located(locator),
                                         'Відсутній {}'.format(element_name))
@@ -39,7 +39,7 @@ class BasePage:
         return self
 
     def hover_element(self, locator):
-        """ Hovering element with given locator, check if element is
+        """ Hovering element with given locator, check if element is visible
         :param locator
         :return: element """
         element_to_hover = self.wait.until(EC.visibility_of_element_located(locator), 'There is no such element')
@@ -48,8 +48,7 @@ class BasePage:
         return self
 
     def element_is_clickable(self, locator):
-        """
-        Looking for element with given locator and check if this element is enabled
+        """ Looking for element with given locator and check if this element is enabled
         :param locator: tuple of method to search and locator
         :return: Returns 'True' if the web-element is clickable, otherwise returns 'False'
         """
@@ -62,7 +61,7 @@ class BasePage:
     def is_element_present(self, locator):
         """ Looking for element with given locator and check if this element is present
         :param locator
-        :return: Returns 'True' if the web-element is clickable, otherwise returns 'False'"""
+        :return: Returns 'True' if the web-element is present, otherwise returns 'False'"""
         try:
             self.wait.until(EC.visibility_of_element_located(locator))
             return True

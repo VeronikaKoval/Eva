@@ -52,4 +52,5 @@ class TestProductPage(BaseTest):
         get price value from the price box to verify that price box contains chosen price """
         product_list = List()
         product_list. apply_manual_price_filter()
-        assert '102' in product_list.get_text_from_price_box(), 'The price is different'
+        time.sleep(5)
+        assert '81' in product_list.get_text_from_price_box(), 'The price is different'

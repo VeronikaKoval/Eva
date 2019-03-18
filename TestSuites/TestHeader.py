@@ -1,3 +1,5 @@
+import time
+
 from TestSuites.BaseTest import BaseTest
 
 from Pages.MainPageHeader import Header

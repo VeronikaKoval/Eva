@@ -30,9 +30,11 @@ class RecoveryPassPopUp(BasePopup):
         return self.wait.until(EC.visibility_of_element_located(self.recovery_error_msg)).text
 
     def is_get_new_pass_btn_visible(self):
-        """ """
+        """ Checking if the "Get new pass" btn is visible,
+        :return: True, if button is visible"""
         return self.is_element_visible(self.new_pass_btn)
 
     def is_mail_in_recovery_visible(self):
-        """ """
+        """ Checking if the email field is visible,
+        :return: True, if field is visible"""
         return self.is_element_visible(self.mail_field_in_recovery)

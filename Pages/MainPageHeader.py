@@ -36,8 +36,7 @@ class Header(BasePage):
     def call_back(self, phone_number):
         """ Clicking on feedback link to get feedback popup, clicking on the phone field, entering phone number,
         :return: object of page """
-        self.wait.until(EC.presence_of_element_located(self.confirm_location_btn)).click()
-        time.sleep(2)
+        self.click(self.confirm_location_btn, 'Confirm suggested loc btn')
         self.wait.until(EC.presence_of_element_located(self.feedback_link)).click()
         phone_field_form = self.wait.until(EC.presence_of_element_located(self.phone_num_field))
         phone_field_form.click()
@@ -48,24 +47,22 @@ class Header(BasePage):
     def get_error_text_with_invalid_number(self):
         """ Checking call back functionality with the invalid phone number,
          :return: text of the error after entering the invalid phone number """
-        return self.wait.until(EC.presence_of_element_located(self.error_invalid_ph)).text
+        return self.wait.until(EC.visibility_of_element_located(self.error_invalid_ph)).text
 
     def get_successful_msg_text_with_valid_number(self):
         """  Checking call back functionality with the valid phone number,
          :return: text of the success message after entering the valid phone number """
-        return self.wait.until(EC.presence_of_element_located(self.success_phone_valid)).text
+        return self.wait.until(EC.visibility_of_element_located(self.success_phone_valid)).text
 
     def is_search_field_visible(self):
         """ Checking if the search field is visible,
         :return: True if the search field is visible"""
-        self.wait.until(EC.presence_of_element_located(self.confirm_location_btn)).click()
-        time.sleep(2)
+        self.click(self.confirm_location_btn, 'Confirm suggested loc btn')
         return self.is_element_visible(self.search_field)
 
     def enter_query_into_search_field(self, query):
         """ Clicking on the search field and entering search query, :return: object of page"""
-        self.wait.until(EC.presence_of_element_located(self.confirm_location_btn)).click()
-        time.sleep(2)
+        self.click(self.confirm_location_btn, 'Confirm suggested loc btn')
         search = self.wait.until(EC.presence_of_element_located(self.search_field))
         search.click()
         search.send_keys(query)
@@ -112,7 +109,7 @@ class Header(BasePage):
     def click_logo(self):
         """Clicking the "Uhod" tab to open "Uhod" page, clicking on the logo to verify that it returns to the main page,
         :return: object of page """
-        self.wait.until(EC.presence_of_element_located(self.confirm_location_btn)).click()
+        self.click(self.confirm_location_btn, 'Confirm suggested loc btn')
         self.wait.until(EC.presence_of_element_located(self.uhod_za_soboj_tab)).click()
         time.sleep(2)
         self.wait.until(EC.visibility_of_element_located(self.logo)).click()
