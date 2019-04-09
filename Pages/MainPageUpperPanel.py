@@ -89,6 +89,11 @@ class Panel(BasePage):
         """ Changing the language of the site to Ukrainian on the upper panel, :return: object of page"""
         return self.wait.until(EC.presence_of_element_located(self.select_lang)).click()
 
+    def add_lang_cookies(self):
+        """ Adding cookies, which are responsible for choosing UKR language as the main language,
+        :return: object of page """
+        return self.driver.add_cookie({'name': 'store', 'value': 'default_ukr', 'domain': 'eva.ua'})
+
     def is_login_btn_visible(self):
         """ Checking if the login button is visible,
         :return: True, if login btn is visible"""

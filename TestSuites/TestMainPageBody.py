@@ -1,5 +1,8 @@
 import time
 
+import pytest
+from selenium.webdriver.common.by import By
+
 from TestSuites.BaseTest import BaseTest
 
 from Pages.MainPageBody import Body
@@ -7,16 +10,43 @@ from Pages.MainPageBody import Body
 
 class TestBody(BaseTest):
 
+    confirm_location_btn = (By.CSS_SELECTOR, 'a.block-location-action.action-yes.js-hide-location')
+
 
     def setup(self):
         super(TestBody, self).setup()
         self.driver.get(self.base_url)
 
+    # @pytest.mark.usefixtures("get_cookies")
     def test_main_drop_down_menu(self):
         """ Clicking on 'Все разделы' menu item, checking the presence of the side drop down menu"""
         main_page = Body()
         assert main_page.is_main_drop_down_menu_present() is True, 'The side drop down menu is absent'
 
+
+    # @pytest.fixture()
+    # def get_cookies_NEW(self):
+    #     """ """
+        # from singleton import Singleton
+        # self.driver = Singleton.get_webdriver()
+        #
+        # # request.cls.driver.get('https://eva.ua/')
+        # # from Pages.BasePage import BasePage
+        # self.driver.click(self.confirm_location_btn, 'Confirm suggested loc btn')
+        # cookies_list = self.driver.get_cookies()
+        # print(cookies_list)
+        # cookies_dict = {}
+        # for cookie in cookies_list:
+        #     cookies_dict[cookie['name']] = cookie['value']
+        #     print(len(cookies_dict))
+        #
+        #     # def add_cookies(self):
+        #     cookie = {'name': '', 'value': ''}
+        #     self.driver.add_cookie(cookie)
+        #     print(len(cookie))
+        # return self.driver.add_cookie({'name': '', 'value': '', 'domain': ''})
+
+    # @pytest.mark.usefixtures("get_cookies_NEW")
     def test_hover_menu_categories(self):
         """ Clicking on 'Все разделы' menu item, hovering each menu category,
          checking if the drop down menu is visible"""
@@ -56,10 +86,10 @@ class TestBody(BaseTest):
         main_page = Body()
         main_page.click_all_promotion_btn()
         assert 'promotion' in main_page.get_page_url(), 'URL is different and doesnt match "promotion" '
-        self.driver.execute_script("window.history.go(-1)")
+        main_page.go_back_to_previous_tab()
         main_page.click_all_brands_btn()
         assert 'brands' in main_page.get_page_url(), 'URL doesnt match "brands"'
-        self.driver.execute_script("window.history.go(-1)")
+        main_page.go_back_to_previous_tab()
         main_page.open_blog()
         assert main_page.get_page_url() == 'https://evaportal.com.ua/', 'URL doesnt match "evaportal.com.ua" '
 

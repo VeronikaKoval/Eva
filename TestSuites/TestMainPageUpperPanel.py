@@ -1,3 +1,5 @@
+import time
+
 from Pages.MainPageBody import Body
 from TestSuites.BaseTest import BaseTest
 
@@ -36,6 +38,15 @@ class TestPanel(BaseTest):
         language has changed to URK """
         panel = Panel()
         panel.change_language()
+        time.sleep(1)
+        assert 'ua/' in panel.get_page_url(), 'ua/ is absent in the current page URl'
+
+    def test_adding_language_cookie(self):
+        """ Adding cookies, which are responsible for UKR language, getting page URL to verify that
+        language has changed to URK """
+        panel = Panel()
+        panel.add_lang_cookies()
+        time.sleep(1)
         assert 'ua/' in panel.get_page_url(), 'ua/ is absent in the current page URl'
 
     def test_visibility_of_login_btn(self):
