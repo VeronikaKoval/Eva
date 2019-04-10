@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59c4b973-a5a9-45ec-b430-8238971322c9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/LoginizationPopUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/LoginizationPopUp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pages/MainPageBody.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/MainPageBody.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/MainPageUpperPanel.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/MainPageUpperPanel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestSuites/BaseTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/TestSuites/BaseTest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TestSuites/TestFooter.py" beforeDir="false" afterPath="$PROJECT_DIR$/TestSuites/TestFooter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TestSuites/TestMainPageBody.py" beforeDir="false" afterPath="$PROJECT_DIR$/TestSuites/TestMainPageBody.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TestSuites/TestMainPageUpperPanel.py" beforeDir="false" afterPath="$PROJECT_DIR$/TestSuites/TestMainPageUpperPanel.py" afterDir="false" />
@@ -20,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TestSuites/TestMainPageUpperPanel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+            <state relative-caret-position="544">
+              <caret line="32" column="120" selection-start-line="32" selection-start-column="120" selection-end-line="32" selection-end-column="120" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -45,12 +42,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TestSuites/TestFooter.py">
+        <entry file="file://$PROJECT_DIR$/Pages/MainPageFooter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+            <state relative-caret-position="748">
+              <caret line="129" column="56" selection-start-line="129" selection-start-column="56" selection-end-line="129" selection-end-column="56" />
               <folding>
-                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#0#43#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -71,22 +68,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TestSuites/TestMainPageBody.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="88" column="43" selection-start-line="88" selection-start-column="43" selection-end-line="88" selection-end-column="43" />
+            <state relative-caret-position="492">
+              <caret line="90" column="63" selection-start-line="90" selection-start-column="63" selection-end-line="90" selection-end-column="63" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Pages/MainPageBody.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="40" lean-forward="true" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="56" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -102,12 +87,24 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/singleton.py">
+        <entry file="file://$PROJECT_DIR$/TestSuites/TestFooter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+            <state relative-caret-position="662">
+              <caret line="75" column="37" selection-start-line="75" selection-start-column="37" selection-end-line="75" selection-end-column="37" />
               <folding>
-                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pages/MainPageBody.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="458">
+              <caret line="223" selection-start-line="223" selection-end-line="223" />
+              <folding>
+                <element signature="e#1#44#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -116,20 +113,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TestSuites/BaseTest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="27" lean-forward="true" selection-start-line="7" selection-end-line="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/conftest.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="442">
+              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
             </state>
           </provider>
         </entry>
@@ -173,13 +158,11 @@
         <option value="$PROJECT_DIR$/Pages/Loginization.py" />
         <option value="$PROJECT_DIR$/BasePage.py" />
         <option value="$PROJECT_DIR$/Test Suites/TestHeader.py" />
-        <option value="$PROJECT_DIR$/TestSuites/BaseTest.py" />
         <option value="$PROJECT_DIR$/Utilities/.gitignore" />
         <option value="$PROJECT_DIR$/Pages/MainPageUpperPannel.py" />
         <option value="$PROJECT_DIR$/TestSuites/MainPageBody.py" />
         <option value="$PROJECT_DIR$/Pages/BasePopUp.py" />
         <option value="$PROJECT_DIR$/Pages/MainPageBodynew.py" />
-        <option value="$PROJECT_DIR$/Pages/MainPageFooter.py" />
         <option value="$PROJECT_DIR$/Pages/ProductPage.py" />
         <option value="$PROJECT_DIR$/Pages/BasePage.py" />
         <option value="$PROJECT_DIR$/Pages/MainPageHeader.py" />
@@ -188,14 +171,16 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/conftest.py" />
         <option value="$PROJECT_DIR$/Pages/MainPageUpperPanel.py" />
-        <option value="$PROJECT_DIR$/TestSuites/TestMainPageUpperPanel.py" />
-        <option value="$PROJECT_DIR$/TestSuites/TestFooter.py" />
         <option value="$PROJECT_DIR$/TestSuites/TestHeader.py" />
         <option value="$PROJECT_DIR$/TestSuites/TestProductPage.py" />
         <option value="$PROJECT_DIR$/singleton.py" />
         <option value="$PROJECT_DIR$/TestSuites/TestLoginizationPopup.py" />
+        <option value="$PROJECT_DIR$/Pages/MainPageFooter.py" />
+        <option value="$PROJECT_DIR$/TestSuites/TestFooter.py" />
         <option value="$PROJECT_DIR$/TestSuites/TestMainPageBody.py" />
+        <option value="$PROJECT_DIR$/TestSuites/BaseTest.py" />
         <option value="$PROJECT_DIR$/Pages/MainPageBody.py" />
+        <option value="$PROJECT_DIR$/TestSuites/TestMainPageUpperPanel.py" />
       </list>
     </option>
   </component>
@@ -216,6 +201,11 @@
             <path>
               <item name="Eva" type="b2602c69:ProjectViewProjectNode" />
               <item name="MakeUp-" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Eva" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MakeUp-" type="462c0819:PsiDirectoryNode" />
+              <item name="TestSuites" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -254,8 +244,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for TestMainPageBody.TestBody.test_buttons_in_blocks">
-    <configuration name="pytest for TestFooter.TestFooter.test_visibility_of_blocks" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.pytest for TestMainPageUpperPanel.TestPanel.test_random_location">
+    <configuration name="pytest for TestFooter.TestFooter.test_open_Google" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Eva" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -266,7 +256,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TestFooter.TestFooter.test_visibility_of_blocks&quot;" />
+      <option name="_new_target" value="&quot;TestFooter.TestFooter.test_open_Google&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -300,7 +290,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for TestMainPageUpperPanel.TestPanel.test_adding_language_cookie" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for TestMainPageUpperPanel.TestPanel.test_random_location" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Eva" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -311,11 +301,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TestMainPageUpperPanel.TestPanel.test_adding_language_cookie&quot;" />
+      <option name="_new_target" value="&quot;TestMainPageUpperPanel.TestPanel.test_random_location&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for TestMainPageUpperPanel.TestPanel.test_changing_lang" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for TestSuites.TestFooter.TestFooter.test_visibility_of_blocks" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Eva" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -326,17 +316,17 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TestMainPageUpperPanel.TestPanel.test_changing_lang&quot;" />
+      <option name="_new_target" value="&quot;TestSuites.TestFooter.TestFooter.test_visibility_of_blocks&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest for TestMainPageUpperPanel.TestPanel.test_random_location" />
         <item itemvalue="Python tests.pytest for TestMainPageBody.TestBody.test_buttons_in_blocks" />
+        <item itemvalue="Python tests.pytest for TestFooter.TestFooter.test_open_Google" />
         <item itemvalue="Python tests.pytest for TestMainPageBody.TestBody.test_hover_menu_categories" />
-        <item itemvalue="Python tests.pytest for TestFooter.TestFooter.test_visibility_of_blocks" />
-        <item itemvalue="Python tests.pytest for TestMainPageUpperPanel.TestPanel.test_adding_language_cookie" />
-        <item itemvalue="Python tests.pytest for TestMainPageUpperPanel.TestPanel.test_changing_lang" />
+        <item itemvalue="Python tests.pytest for TestSuites.TestFooter.TestFooter.test_visibility_of_blocks" />
       </list>
     </recent_temporary>
   </component>
@@ -498,22 +488,17 @@
       <option name="project" value="LOCAL" />
       <updated>1553264273293</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="improvements -add conftest">
+      <created>1554816952629</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1554816952629</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="pytest_for_TestMainPageUpperPanel_TestPanel_test_adding_language_cookie - 2019.04.09 at 15h 26m 36s.xml">
-      <configuration name="pytest for TestMainPageUpperPanel.TestPanel.test_adding_language_cookie" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_TestMainPageUpperPanel_TestPanel_test_adding_language_cookie - 2019.04.09 at 15h 28m 31s.xml">
-      <configuration name="pytest for TestMainPageUpperPanel.TestPanel.test_adding_language_cookie" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_TestFooter_TestFooter_test_visibility_of_blocks - 2019.04.09 at 15h 39m 09s.xml">
-      <configuration name="pytest for TestFooter.TestFooter.test_visibility_of_blocks" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_for_TestFooter_TestFooter_test_visibility_of_blocks - 2019.04.09 at 15h 39m 59s.xml">
-      <configuration name="pytest for TestFooter.TestFooter.test_visibility_of_blocks" configurationId="tests" />
-    </history-entry>
     <history-entry file="pytest_for_TestMainPageBody_TestBody_test_hover_menu_categories - 2019.04.09 at 15h 46m 55s.xml">
       <configuration name="pytest for TestMainPageBody.TestBody.test_hover_menu_categories" configurationId="tests" />
     </history-entry>
@@ -532,13 +517,25 @@
     <history-entry file="pytest_for_TestMainPageBody_TestBody_test_buttons_in_blocks - 2019.04.09 at 16h 29m 16s.xml">
       <configuration name="pytest for TestMainPageBody.TestBody.test_buttons_in_blocks" configurationId="tests" />
     </history-entry>
+    <history-entry file="pytest_for_TestFooter_TestFooter_test_open_Google - 2019.04.10 at 09h 46m 50s.xml">
+      <configuration name="pytest for TestFooter.TestFooter.test_open_Google" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_TestMainPageBody_TestBody_test_buttons_in_blocks - 2019.04.10 at 09h 51m 27s.xml">
+      <configuration name="pytest for TestMainPageBody.TestBody.test_buttons_in_blocks" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_TestMainPageUpperPanel_TestPanel_test_random_location - 2019.04.10 at 09h 57m 23s.xml">
+      <configuration name="pytest for TestMainPageUpperPanel.TestPanel.test_random_location" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_TestMainPageUpperPanel_TestPanel_test_random_location - 2019.04.10 at 09h 58m 13s.xml">
+      <configuration name="pytest for TestMainPageUpperPanel.TestPanel.test_random_location" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" weight="0.08061117" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.11116965" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49920508" weight="0.32752994" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50158983" side_tool="true" weight="0.36607143" />
@@ -546,7 +543,7 @@
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.32861805" />
       <window_info anchor="bottom" id="Version Control" order="5" weight="0.32857144" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.49841017" visible="true" weight="0.4461371" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49841017" visible="true" weight="0.35255712" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -565,7 +562,7 @@
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.32861805" />
       <window_info anchor="bottom" id="Version Control" order="5" weight="0.32857144" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.49841017" visible="true" weight="0.51468986" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.49841017" visible="true" weight="0.35255712" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -598,7 +595,8 @@
     <MESSAGE value="final clean_up" />
     <MESSAGE value="final version" />
     <MESSAGE value="improvements -add gitignore to root" />
-    <option name="LAST_COMMIT_MESSAGE" value="improvements -add gitignore to root" />
+    <MESSAGE value="improvements -add conftest" />
+    <option name="LAST_COMMIT_MESSAGE" value="improvements -add conftest" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/webdrivers/__init__.py">
@@ -672,16 +670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/MainPageFooter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1397">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Pages/MainPageHeader.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="867">
@@ -749,13 +737,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TestSuites/BaseTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="27" lean-forward="true" selection-start-line="7" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TestSuites/TestProductPage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -772,16 +753,6 @@
           <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TestSuites/TestMainPageUpperPanel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -806,13 +777,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TestSuites/TestHeader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="9" lean-forward="true" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/conftest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -823,10 +787,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/MainPageFooter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="129" column="56" selection-start-line="129" selection-start-column="56" selection-end-line="129" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TestSuites/TestHeader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="9" lean-forward="true" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TestSuites/BaseTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pages/MainPageBody.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="223" selection-start-line="223" selection-end-line="223" />
+          <folding>
+            <element signature="e#1#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TestSuites/TestFooter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+        <state relative-caret-position="662">
+          <caret line="75" column="37" selection-start-line="75" selection-start-column="37" selection-end-line="75" selection-end-column="37" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
@@ -835,20 +833,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TestSuites/TestMainPageBody.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="88" column="43" selection-start-line="88" selection-start-column="43" selection-end-line="88" selection-end-column="43" />
+        <state relative-caret-position="492">
+          <caret line="90" column="63" selection-start-line="90" selection-start-column="63" selection-end-line="90" selection-end-column="63" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pages/MainPageBody.py">
+    <entry file="file://$PROJECT_DIR$/TestSuites/screen_location.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TestSuites/TestMainPageUpperPanel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="40" lean-forward="true" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="56" />
+        <state relative-caret-position="544">
+          <caret line="32" column="120" selection-start-line="32" selection-start-column="120" selection-end-line="32" selection-end-column="120" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -43,21 +43,22 @@ class TestFooter(BaseTest):
         """ Clicking on Google link, verifying that it opens in a new tab, checking page URL"""
         footer = Footer()
         footer.click_Google()
-        self.driver.switch_to.window(self.driver.window_handles[1])
+        self.switch_to_previous_tab()
+        # self.driver.switch_to.window(self.driver.window_handles[1])
         assert 'plus.google.com' in footer.get_page_url(), 'URL doesnt match "plus.google.com"'
 
     def test_FB(self):
         """ Clicking on Facebook link, verifying that it is opened in a new tab, checking page URL"""
         footer = Footer()
         footer.click_FB()
-        self.driver.switch_to.window(self.driver.window_handles[1])
+        self.switch_to_previous_tab()
         # assert 'www.facebook.com/EVA.dp.ua' in footer.get_page_url(), 'URL doesnt match "facebook.com/EVA.dp.ua"'
 
     def test_youtube(self):
         """Clicking on Youtube link, verifying that it is opened in a new tab, checking page URL"""
         footer = Footer()
         footer.click_youtube()
-        self.driver.switch_to.window(self.driver.window_handles[1])
+        self.switch_to_previous_tab()
         assert footer.get_page_url() == 'https://www.youtube.com/user/evadpua', \
             'URL doesnt match "youtube.com/user/evadpua"'
 
@@ -65,12 +66,12 @@ class TestFooter(BaseTest):
         """ Clicking on Twitter link, verifying that it is opened in a new tab, checking page URL"""
         footer = Footer()
         footer.click_twitter()
-        self.driver.switch_to.window(self.driver.window_handles[1])
+        self.switch_to_previous_tab()
         assert footer.get_page_url() == 'https://twitter.com/eva__ua', 'URL doesnt match "twitter.com/eva__ua" '
 
     def test_instagram(self):
         """ Clicking on Insagram link, verifying that it is opened in a new tab, checking page URL"""
         footer = Footer()
         footer.click_instagram()
-        self.driver.switch_to.window(self.driver.window_handles[1])
+        self.switch_to_previous_tab()
         assert footer.get_page_url() == 'https://www.instagram.com/eva_ua/', 'URL doesnt match "instagram.com/eva_ua/" '

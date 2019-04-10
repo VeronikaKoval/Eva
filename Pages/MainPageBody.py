@@ -221,8 +221,3 @@ class Body(BasePage):
         clicking "Получить новый пароль" btn",
         :return: recovery success msg text"""
         return self.wait.until(EC.visibility_of_element_located(self.recovery_pass_succ_msg)).text
-
-    def go_back_to_previous_tab(self):
-        """ Switching to previous tab in the history"""
-        return self.driver.execute_script("window.history.go(-1)")
-

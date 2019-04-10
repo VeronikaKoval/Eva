@@ -86,10 +86,10 @@ class TestBody(BaseTest):
         main_page = Body()
         main_page.click_all_promotion_btn()
         assert 'promotion' in main_page.get_page_url(), 'URL is different and doesnt match "promotion" '
-        main_page.go_back_to_previous_tab()
+        self.go_back_to_previous_tab()
         main_page.click_all_brands_btn()
         assert 'brands' in main_page.get_page_url(), 'URL doesnt match "brands"'
-        main_page.go_back_to_previous_tab()
+        self.go_back_to_previous_tab()
         main_page.open_blog()
         assert main_page.get_page_url() == 'https://evaportal.com.ua/', 'URL doesnt match "evaportal.com.ua" '
 

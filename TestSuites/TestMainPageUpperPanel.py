@@ -31,7 +31,7 @@ class TestPanel(BaseTest):
         panel = Panel()
         panel.choose_random_loc()
         assert panel.is_location_changed_popup_visible() is True, 'The popup with new location is not visible or absent'
-        self.driver.save_screenshot('screenie.png')
+        self.save_screenshot('screen_location.png')
 
     def test_changing_lang(self):
         """ Changing the language of the site from RUS to UKR on the upper panel, getting page URL to verify that
