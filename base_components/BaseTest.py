@@ -1,5 +1,5 @@
 
-from singleton import Singleton
+from driver import Singleton
 
 
 class BaseTest:
