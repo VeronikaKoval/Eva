@@ -109,4 +109,4 @@ venv.bak/
 /TestSuites/screenie.png
 
 /t --fixtures
-/TestSuites/screen_location.png
+/test_suites/screen_location.png
