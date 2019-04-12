@@ -1,8 +1,4 @@
-import time
-
-import pytest
-
-from TestSuites.BaseTest import BaseTest
+from base_components.BaseTest import BaseTest
 
 from Pages.MainPageFooter import Footer
 

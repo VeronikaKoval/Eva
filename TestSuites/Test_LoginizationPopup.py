@@ -4,7 +4,7 @@ import pytest
 
 from Pages.MainPageBody import Body
 from Pages.MainPageUpperPanel import Panel
-from TestSuites.BaseTest import BaseTest
+from base_components.BaseTest import BaseTest
 from Pages.LoginizationPopUp import LoginPopup
 
 

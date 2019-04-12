@@ -1,9 +1,8 @@
 import time
 
-import pytest
 from selenium.webdriver.common.by import By
 
-from TestSuites.BaseTest import BaseTest
+from base_components.BaseTest import BaseTest
 
 from Pages.MainPageBody import Body
 

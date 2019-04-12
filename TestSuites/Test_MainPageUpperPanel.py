@@ -1,7 +1,7 @@
 import time
 
 from Pages.MainPageBody import Body
-from TestSuites.BaseTest import BaseTest
+from base_components.BaseTest import BaseTest
 
 from Pages.MainPageUpperPanel import Panel
 

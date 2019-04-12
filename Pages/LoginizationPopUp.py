@@ -3,11 +3,9 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
-from Pages.BasePage import BasePage
+from base_components.BasePage import BasePage
 
 from selenium.webdriver.support import expected_conditions as EC
-
-from Pages.BasePopUp import BasePopup
 
 from Pages.RecoveryPassPopUp import RecoveryPassPopUp
 

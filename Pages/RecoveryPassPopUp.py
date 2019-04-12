@@ -3,7 +3,7 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
-from Pages.BasePopUp import BasePopup
+from base_components.BasePopUp import BasePopup
 
 
 class RecoveryPassPopUp(BasePopup):

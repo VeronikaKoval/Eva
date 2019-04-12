@@ -24,3 +24,4 @@ class BaseTest:
     def save_screenshot(self, filename):
         """  Saves a screenshot of the current window to a PNG image file."""
         self.driver.save_screenshot(filename)
+        return self
