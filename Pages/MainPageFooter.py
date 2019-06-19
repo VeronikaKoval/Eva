@@ -32,8 +32,10 @@ class Footer(BasePage):
     #Actions
 
     def subscribe_for_news(self, email):
-        """ Clicking on the subscribe field, entering email, clicking "Subscribe" btn,
-        :return: object of page """
+        """
+        Click on the subscribe field, entering email, clicking "Subscribe" btn,
+        :return: object of page
+        """
         subscribe = self.wait.until(EC.visibility_of_element_located(self.subscribe_field))
         subscribe.click()
         subscribe.send_keys(email)
@@ -41,90 +43,114 @@ class Footer(BasePage):
         return self
 
     def get_error_msg_text_newsletters(self):
-        """ Getting error message text after subscribing for news with invalid email,
-         :return: text of the error message"""
+        """
+        Get error message text after subscribing for news with invalid email,
+         :return: text of the error message
+         """
         return self.wait.until(EC.visibility_of_element_located(self.subscription_error)).text
 
     def get_success_msg_text_newsletters(self):
-        """ Getting error message text after subscribing for news with valid email,
-        :return: text of the success message"""
+        """
+        Get error message text after subscribing for news with valid email,
+        :return: text of the success message
+        """
         return self.wait.until(EC.visibility_of_element_located(self.subscription_success)).text
 
     def click_social_media_link(self, locator):
-        """ Clicking on social link in footer,
-        :return: object of page"""
+        """
+        Click on social link in footer,
+        :return: object of page
+        """
         return self.wait.until(EC.visibility_of_element_located(locator)).click()
 
     def click_Google(self):
-        """ Clicking on Google link, verifying that it is opened in a new tab,
-        :return: object of page"""
+        """
+        Click on Google link, verifying that it is opened in a new tab,
+        :return: object of page
+        """
         return self.click_social_media_link(self.Google_link)
 
     def click_FB(self):
-        """ Clicking on Facebook link, verifying that it is opened in a new tab,
-        :return: object of page"""
+        """
+        Click on Facebook link, verifying that it is opened in a new tab,
+        :return: object of page
+        """
         return self.click_social_media_link(self.FB_link)
 
     def click_youtube(self):
-        """ Clicking on Youtube link, verifying that it is opened in a new tab,
-        :return: object of page"""
+        """ Click on Youtube link, verifying that it is opened in a new tab,
+        :return: object of page
+        """
         return self.click_social_media_link(self.Youtube_link)
 
     def click_twitter(self):
-        """ Clicking on Twitter link, verifying that it is opened in a new tab,
-        :return: object of page"""
+        """
+        Click on Twitter link, verifying that it is opened in a new tab,
+        :return: object of page
+        """
         return self.click_social_media_link(self.Twitter_link)
 
     def click_viber(self):
-        """ Clicking on Viber link, verifying that it is opened in a new tab,
-        :return: object of page"""
+        """
+        Click on Viber link, verifying that it is opened in a new tab,
+        :return: object of page
+        """
         return self.click_social_media_link(self.Viber_link)
 
     def click_instagram(self):
-        """ Clicking on Instagram link, verifying that it is opened in a new tab,
-        :return: object of page """
+        """
+        Click on Instagram link, verifying that it is opened in a new tab,
+        :return: object of page
+        """
         return self.click_social_media_link(self.Insta_link)
 
-    def get_page_url(self):
-        """ Getting the page url, :return: page current URL"""
-        return self.driver.current_url
-
     def is_projects_visible(self):
-        """ Checking if block "Projects" is visible,
-        :return: True if element is visible """
-        return self.is_element_visible(self.block_projects)
+        """ Check if block "Projects" is visible,
+        :return: True if element is visible, otherwise returns 'False'
+        """
+        return self.is_element_visible(self.block_projects, 'НАШИ ПРОЕКТЫ')
 
     def is_help_visible(self):
-        """  Checking if block "Help" is visible,
-        :return: True if element is visible"""
-        return self.is_element_visible(self.block_help)
+        """  Check if block "Help" is visible,
+        :return: True if element is visible, otherwise returns 'False'
+        """
+        return self.is_element_visible(self.block_help, 'ПОМОЩЬ')
 
     def is_hotline_visible(self):
-        """  Checking if block "Hot line" is visible,
-        :return: True if element is visible"""
-        return self.is_element_visible(self.block_hotline)
+        """  Check if block "Hot line" is visible,
+        :return: True if element is visible, otherwise returns 'False'
+        """
+        return self.is_element_visible(self.block_hotline, 'ГОРЯЧАЯ ЛИНИЯ')
 
     def is_subscribe_visible(self):
-        """  Checking if block "Subscribe" is visible,
-        :return: True if element is visible """
-        return self.is_element_visible(self.block_subsribe)
+        """  Check if block "Subscribe" is visible,
+        :return: True if element is visible, otherwise returns 'False'
+        """
+        return self.is_element_visible(self.block_subsribe, 'ПОДПИСКА НА НОВОСТИ')
 
     def is_subscribe_field_visible(self):
-        """ Checking if the "Subscribe" field is visible,
-        :return: True if field is visible"""
-        return self.is_element_present(self.subscribe_field)
+        """ Check if the "Subscribe" field is visible,
+        :return: True if field is visible, otherwise returns 'False'
+        """
+        return self.is_element_present(self.subscribe_field, 'Subscribe field')
 
     def is_subscribe_btn_visible(self):
-        """ Checking the "Submit" btn in the subscribe block is visible,
-        :return: True if button is visible"""
-        return self.is_element_visible(self.subscribe_btn)
+        """
+        Check the "Submit" btn in the subscribe block is visible,
+        :return: True if button is visible, otherwise returns 'False'
+        """
+        return self.is_element_visible(self.subscribe_btn, 'Subscribe button')
 
     def is_social_links_block_visible(self):
-        """  Checking the "Social links" block is visible,
-        :return: True if block is visible"""
-        return self.is_element_visible(self.social_links_block)
+        """
+        Check the "Social links" block is visible,
+        :return: True if block is visible
+        """
+        return self.is_element_visible(self.social_links_block, 'СОЦИАЛЬНЫЕ СЕТИ')
 
     def is_bottom_logo_visible(self):
-        """ Checking if the bottom logo is visible,
-        :return return: True if logo is visible"""
-        return self.is_element_visible(self.bottom_logo)
+        """
+        Check if the bottom logo is visible,
+        :return True if logo is visible, otherwise returns 'False'
+        """
+        return self.is_element_visible(self.bottom_logo, 'logo')

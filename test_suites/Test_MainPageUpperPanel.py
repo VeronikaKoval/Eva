@@ -13,56 +13,72 @@ class TestPanel(BaseTest):
         self.driver.get(self.base_url)
 
     def test_confirm_location(self):
-        """ Clicking "Confirm loc" btn on the suggested location 'Kyiv' and verifying the text of the chosen location"""
+        """
+        Click "Confirm loc" btn on the suggested location 'Kyiv' and verifying the text of the chosen location
+        :return True, if btn is visible and expected location chose, otherwise return 'False'
+        """
         panel = Panel()
         assert panel.is_confirm_loc_btn_visible() is True, '"Confirm location" btn is not visible'
         panel.click_confirm_suggested_location()
         assert 'Киев' in panel.get_loc_text(), 'The location is not Kyiv'
 
     def test_change_location(self):
-        """ Choosing 'Lviv' city as current city from the location drop-down list"""
+        """
+        Choosing 'Lviv' city as current city from the location drop-down list
+        :return True, if expected location is chosen, otherwise return 'False'
+        """
         panel = Panel()
         panel.choose_location()
         assert 'ЛЬВОВ' in panel.get_loc_text_from_popup(), 'The location is not Lviv'
 
     def test_random_location(self):
-        """ Clicking 'Choose another location' button, choosing random location from the list of location
-        and verifying that popup with changed location is opened"""
+        """
+        Click 'Choose another location' button, choose random location from the list of location
+        and verifying that popup with changed location is opened
+        :return True, if btn is visible and expected location is chosen, otherwise return 'False'
+        """
         panel = Panel()
         panel.choose_random_loc()
-        assert panel.is_location_changed_popup_visible() is True, 'The popup with new location is not visible or absent'
+        assert panel.is_location_changed_popup_visible(), 'The popup with new location is not visible or absent'
         self.save_screenshot('screen_location.png')
 
     def test_changing_lang(self):
-        """ Changing the language of the site from RUS to UKR on the upper panel, getting page URL to verify that
-        language has changed to URK """
+        """
+        Chang the language of the site from RUS to UKR on the upper panel, getting page URL to verify that
+        language has changed to URK
+        :return True, if expected language is chosen, otherwise return 'False'
+        """
         panel = Panel()
         panel.change_language()
         time.sleep(1)
         assert 'ua/' in panel.get_page_url(), 'ua/ is absent in the current page URl'
 
     def test_adding_language_cookie(self):
-        """ Adding cookies, which are responsible for UKR language, getting page URL to verify that
-        language has changed to URK """
+        """
+        Add cookies, which are responsible for UKR language, getting page URL to verify that
+        language has changed to URK
+        :return True, if expected language is chosen, otherwise return 'False'
+        """
         panel = Panel()
         panel.add_lang_cookies()
         time.sleep(1)
         assert 'ua/' in panel.get_page_url(), 'ua/ is absent in the current page URl'
 
-    def test_visibility_of_login_btn(self):
-        """ Checking if the login button is visible """
-        panel = Panel()
-        assert panel.is_login_btn_visible() is True, 'The login btn is not visible'
-
     def test_our_projects(self):
-        """  Clicking on the 'Наши проекты' button on the upper panel, checking the presence and
-        visibility of "Our projects" block """
+        """
+        Click on the 'Наши проекты' button on the upper panel, checking the presence and
+        visibility of "Our projects" block
+        :return True, if element is visible, otherwise return 'False'
+        """
         panel = Panel()
-        assert panel.is_our_projects_visible() is True, 'The "Наши проекты" block is not visible'
+        assert panel.is_our_projects_visible(), 'The "Наши проекты" block is not visible'
 
     def test_click_tabs_on_pannel(self):
-        """ Clicking the "Stores", then "News", tab on the upper panel, getting page current
-        URL to check that page has opened and Url changed """
+        """
+        Click the "Stores", then "News", tab on the upper panel, get page current
+        URL to check that page has opened and Url changed
+        :return True, if page url coincides with expected, otherwise return 'False'
+        """
         panel = Panel()
         panel.click_stores_tab()
         main_page = Body()
@@ -71,8 +87,11 @@ class TestPanel(BaseTest):
         assert 'novosti' in main_page.get_page_url(),  'novosti is absent in the current page URl'
 
     def test_open_tabs_on_panel(self):
-        """ Clicking the "Help" and then "Certificate" tab on the upper panel to check whether the popup is opened
-        and visible"""
+        """
+        Click the "Help" and then "Certificate" tab on the upper panel to check whether the popup is opened
+        and visible
+        :return True, if tabs are visible, otherwise return 'False'
+        """
         panel = Panel()
-        assert panel.click_help_tab() is True, 'The "Help" popup is not visible'
-        assert panel.click_certificate_tab() is True, 'The "Certificate" popup is not visible'
+        assert panel.click_help_tab(), 'The "Help" popup is not visible'
+        assert panel.click_certificate_tab(), 'The "Certificate" popup is not visible'

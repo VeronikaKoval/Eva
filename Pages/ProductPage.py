@@ -30,15 +30,19 @@ class List(BasePage):
     # Actions
 
     def apply_filter_country(self):
-        """ Opening "Средства для проблемной кожи" page,
-        checking checkbox "Франция" in "Страна производства" filter, :return: object of page """
+        """
+        Open "Средства для проблемной кожи" page,
+        check checkbox "Франция" in "Страна производства" filter,
+        :return: object of page """
         self.wait.until(EC.presence_of_element_located(self.country_france)).click()
         return self
 
     def get_country_filter_attr(self):
-        """ Opening "Средства для проблемной кожи" page, getting checkbox "Франция"
+        """
+        Open "Средства для проблемной кожи" page, get checkbox "Франция"
         in "Страна производства" filter attribute to verify that checkbox is checked,
-        :return: True if the checkbox value is checked"""
+        :return: True if the checkbox value is checked, otherwise return 'False'
+        """
         value = self.wait.until(EC.presence_of_element_located(self.country_france)).\
             find_element_by_tag_name('input').get_attribute('checked')
         if value == 'true':
@@ -47,8 +51,10 @@ class List(BasePage):
             return False
 
     def apply_filter_name(self):
-        """ Opening "Средства для проблемной кожи" page, scrolling down to name filter, clicking on "Nivea" checkbox,
-        checking the checkbox status to verify that checkbox is checked """
+        """
+        Open "Средства для проблемной кожи" page, scrolling down to name filter, clicking on "Nivea" checkbox,
+        check the checkbox status to verify that checkbox is checked
+        """
         scroll_element = self.wait.until(EC.presence_of_element_located(self.scroll_btn))
         scroll = ActionChains(self.driver).drag_and_drop_by_offset(scroll_element, 0, 35).perform()
         time.sleep(3)
@@ -56,9 +62,11 @@ class List(BasePage):
         return self
 
     def get_name_filter_attr(self):
-        """ Opening "Средства для проблемной кожи" page, scrolling down name filter, clicking on "Nivea" checkbox,
-        checking the checkbox status to verify that checkbox is checked,
-        :return: True if the checkbox value is checked"""
+        """
+        Open "Средства для проблемной кожи" page, scrolling down name filter, clicking on "Nivea" checkbox,
+        check the checkbox status to verify that checkbox is checked,
+        :return: True if the checkbox value is checked, otherwise return 'False'
+        """
         value = self.wait.until(EC.presence_of_element_located(self.Nivea)).\
             find_element_by_tag_name('input').get_attribute('checked')
         if value == 'true':
@@ -67,28 +75,36 @@ class List(BasePage):
             return False
 
     def apply_sort_price_decs(self):
-        """ Opening the sorting drop down, clicking sorting from expensive to cheap,
-         :return: object of page """
+        """
+        Open the sorting drop down, clicking sorting from expensive to cheap,
+        :return: object of page
+        """
         self.wait.until(EC.presence_of_element_located(self.sorting_block)).click()
         self.wait.until(EC.presence_of_element_located(self.sort_price_desc)).click()
         return self
 
     def apply_sort_price_asc(self):
-        """ Opening the sorting drop down, clicking sorting from cheap to expensive,
-        :return: object of page """
+        """
+        Open the sorting drop down, clicking sorting from cheap to expensive,
+        :return: object of page
+        """
         self.wait.until(EC.presence_of_element_located(self.sorting_block)).click()
         self.wait.until(EC.presence_of_element_located(self.sort_price_asc)).click()
         return self
 
     def apply_manual_price_filter(self):
-        """ Scrolling page to manual price filter, applying manual filter for sorting products by price,
-        :return: object of page """
+        """
+        Scroll page to manual price filter, applying manual filter for sorting products by price,
+        :return: object of page
+        """
         self.driver.execute_script("window.scrollTo(0, 1050)")
         left_scroll = self.wait.until(EC.presence_of_element_located(self.left_scroll_btn))
         ActionChains(self.driver).drag_and_drop_by_offset(left_scroll, 105, 0).perform()
         return self
 
     def get_text_from_price_box(self):
-        """ Getting text from price box on price filter,
-        :return: text from the price box """
+        """
+        Get text from price box on price filter,
+        :return: text from the price box
+        """
         return self.wait.until(EC.visibility_of_element_located(self.price_box)).text

@@ -42,7 +42,7 @@ class Body(BasePage):
     top_prodazh = (By.CSS_SELECTOR, 'div#amasty-shopby-product-list')
     popular_categories = (By.CSS_SELECTOR, 'div.popular-categories-wrap')
     brands_block = (By.CSS_SELECTOR, 'div.brands-list.owl-carousel.owl-loaded.owl-drag')
-    mosaica = (By.CSS_SELECTOR, 'div.mosaic-block')
+    mosaica = (By.CSS_SELECTOR, 'div.mosaic-block-wrap')
     blog = (By.CSS_SELECTOR, 'div.blog-wrap')
 
     vsi_akzii_btn = (By.CSS_SELECTOR, 'div.all-action-url > a[href="https://eva.ua/promotion/"]')
@@ -67,143 +67,190 @@ class Body(BasePage):
    # Actions
 
     def is_main_drop_down_menu_present(self):
-        """ Clicking on 'Все разделы' menu item,
-         :return: True if main drop down menu is visible after clicking"""
+        """
+        Click on 'Все разделы' menu item,
+        :return: True if main drop down menu is visible after clicking
+        :return True, if element is visible, otherwise returns 'False'
+         """
         self.click(self.confirm_location_btn, 'Confirm suggested loc btn')
         self.wait.until(EC.presence_of_element_located(self.all_menu_items)).click()
-        return self.is_element_visible(self.left_side_menu)
+        return self.is_element_visible(self.left_side_menu, 'left side menu')
 
     def hover_menu_item_uhod(self):
-        """ Clicking on 'Все разделы' menu item, hovering "Uhod" menu item,
-        :return: True if drop down menu is visible after hovering category"""
+        """
+        Click on 'Все разделы' menu item, hovering "Uhod" menu item,
+        :return: True if drop down menu is visible after hovering category, otherwise returns 'False'
+        """
         self.click(self.confirm_location_btn, 'Confirm suggested loc btn')
         self.wait.until(EC.presence_of_element_located(self.all_menu_items)).click()
-        self.hover_element(self.uhod_mi)
-        return self.is_element_visible(self.drop_down_menu_uhod)
+        self.hover_element(self.uhod_mi, '"Uhod" menu item')
+        return self.is_element_visible(self.drop_down_menu_uhod, 'Uhod drop down')
 
     def hover_menu_item_parfum(self):
-        """ Clicking on 'Все разделы' menu item, hovering "Parfumerija" menu item,
-         :return: True if drop down menu is visible after hovering category"""
-        self.hover_element(self.parfumeria_mi)
-        return self.is_element_visible(self.drop_down_menu_parfum)
+        """
+        Click on 'Все разделы' menu item, hovering "Parfumerija" menu item,
+        :return: True if drop down menu is visible after hovering category, otherwise returns 'False'
+        """
+        self.hover_element(self.parfumeria_mi, '"Parfumeruia" menu item')
+        return self.is_element_visible(self.drop_down_menu_parfum, 'Parfumeriia drop down')
 
     def hover_menu_item_dlja_domy(self):
-        """ Clicking on 'Все разделы' menu item, hovering "Tovary dlja domy" menu item,
-        :return: True if drop down menu is visible after hovering category"""
-        self.hover_element(self.tovary_dlja_doma_mi)
-        return self.is_element_visible(self.drop_down_menu_dlja_domu)
+        """
+        Click on 'Все разделы' menu item, hovering "Tovary dlja domy" menu item,
+        :return: True if drop down menu is visible after hovering category, otherwise returns 'False'
+        """
+        self.hover_element(self.tovary_dlja_doma_mi, '"Dlia domu" menu item')
+        return self.is_element_visible(self.drop_down_menu_dlja_domu, 'Dlia domu drop down')
 
     def hover_menu_item_himija(self):
-        """ Clicking on 'Все разделы' menu item, hovering "Himija" menu item,
-         :return: True if drop down menu is visible after hovering category"""
-        self.hover_element(self.himija_mi)
-        return self.is_element_visible(self.drop_down_menu_himija)
+        """
+        Click on 'Все разделы' menu item, hovering "Himija" menu item,
+        :return: True if drop down menu is visible, otherwise returns 'False'
+        """
+        self.hover_element(self.himija_mi, '"Himiia" menu item')
+        return self.is_element_visible(self.drop_down_menu_himija, 'Himija drop down')
 
     def hover_menu_item_aksesuaru(self):
-        """ Clicking on 'Все разделы' menu item, hovering "Aksesuaru" menu item,
-         :return: True if drop down menu is visible after hovering category"""
-        self.hover_element(self.aksesuaru_mi)
-        return self.is_element_visible(self.drop_down_menu_aksesuaru)
+        """
+        Click on 'Все разделы' menu item, hovering "Aksesuaru" menu item,
+        :return: True if drop down menu is visible after hovering category, otherwise returns 'False'
+        """
+        self.hover_element(self.aksesuaru_mi, '"Aksesyaru" menu item')
+        return self.is_element_visible(self.drop_down_menu_aksesuaru, 'Aksesyaru drop down')
 
     def hover_menu_item_kosmetika(self):
-        """ Clicking on 'Все разделы' menu item, hovering "Kosmetika dekoratyvna" menu item,
-         :return: True if drop down menu is visible after hovering category"""
-        self.hover_element(self.kosmetika_dekorat_mi)
-        return self.is_element_visible(self.drop_down_menu_kosmetika)
+        """
+        Click on 'Все разделы' menu item, hovering "Kosmetika dekoratyvna" menu item,
+        :return: True if drop down menu is visible after hovering category, v
+        """
+        self.hover_element(self.kosmetika_dekorat_mi, '"Dekoratyvna kosmetyka" menu item')
+        return self.is_element_visible(self.drop_down_menu_kosmetika, 'Dekoratyvna kosmetuka')
 
-    def hover_menu_item_dlja_muzchin(self):
-        """ Clicking on 'Все разделы' menu item, hovering "Tovary dlja muzchin" menu item,
-         :return: True if drop down menu is visible after hovering category"""
-        self.hover_element(self.dlja_muzchin_mi)
-        return self.is_element_visible(self.drop_down_menu_dlja_muzchin)
+    def hover_menu_item_dlja_muzhchin(self):
+        """
+        Click on 'Все разделы' menu item, hovering "Tovary dlja muzchin" menu item,
+        :return: True if drop down menu is visible after hovering category, otherwise returns 'False'
+         """
+        self.hover_element(self.dlja_muzchin_mi, '"Dlia muzhchin"menu item')
+        return self.is_element_visible(self.drop_down_menu_dlja_muzchin, 'dlia muzhchin drop down')
 
     def hover_menu_item_dlja_ditej(self):
-        """ Clicking on 'Все разделы' menu item, hovering "Tovary dlja ditej" menu item,
-         :return: True if drop down menu is visible after hovering category"""
-        self.hover_element(self.dlja_ditej_mi)
-        return self.is_element_visible(self.drop_down_dlja_ditej)
+        """
+        Click on 'Все разделы' menu item, hovering "Tovary dlja ditej" menu item,
+        :return: True if drop down menu is visible after hovering category, otherwise returns 'False'
+         """
+        self.hover_element(self.dlja_ditej_mi, '"Dlia ditej" menu item')
+        return self.is_element_visible(self.drop_down_dlja_ditej, 'Dlia ditej drop down')
 
     def is_slider_visible(self):
-        """ Checking if the banner is visible,
-        :return: True if the slider is visible"""
-        return self.is_element_visible(self.slider)
+        """
+        Check if the banner is visible,
+        :return: True if the slider is visible, otherwise returns 'False'
+        """
+        return self.is_element_visible(self.slider, 'Slider')
 
     def is_side_banner_visible(self):
-        """ Checking if the side banner is visible,
-        :return: True if the side banner is visible"""
-        return self.is_element_visible(self.side_banner)
+        """
+        Check if the side banner is visible,
+        :return: True if the side banner is visible, otherwise returns 'False'
+        """
+        return self.is_element_visible(self.side_banner, 'Side banner')
 
     def is_timer_visible(self):
-        """ Checking if the timer in the "Tovar dnja" banner is visible,
-        :return: True if the timer is visible"""
-        return self.is_element_visible(self.timer)
+        """
+        Check if the timer in the "Tovar dnja" banner is visible,
+        :return: True if the timer is visible, otherwise returns 'False'
+        """
+        return self.is_element_visible(self.timer, 'Timer')
 
     def is_akzii_block_visible(self):
         """ Checking if the "Akzii" block is visible,
-        :return: True if the block is visible """
-        return self.is_element_visible(self.akzii_block)
+        :return: True if the block is visible, otherwise returns 'False'
+        """
+        return self.is_element_visible(self.akzii_block, 'Block "Aktsii"')
 
     def is_top_prodazh_visible(self):
-        """ Checking if the "Top prodazh" block is visible,
-        :return: True if the "Top prodazh" block is visible"""
-        return self.is_element_visible(self.top_prodazh)
+        """
+        Check if the "Top prodazh" block is visible,
+        :return: True if the "Top prodazh" block is visible, otherwise returns 'False'
+        """
+        return self.is_element_visible(self.top_prodazh, 'Block "Top prodazh"')
 
     def is_popular_categories_visible(self):
-        """ Checking if the "Popular categories" block is visible,
-        :return: True if the "Popular categories" block is visible"""
-        return self.is_element_visible(self.popular_categories)
+        """
+        Check if the "Popular categories" block is visible,
+        :return: True if the "Popular categories" block is visible, otherwise returns 'False'
+        """
+        return self.is_element_visible(self.popular_categories, 'Block "Popular categories"')
 
     def is_brands_block_visible(self):
-        """ Checking if the "Brands" block is visible,
-        :return: True if the "Brands" block is visible"""
-        return self.is_element_visible(self.brands_block)
+        """
+        Check if the "Brands" block is visible,
+        :return: True if the "Brands" block is visible, otherwise returns 'False'
+        """
+        return self.is_element_visible(self.brands_block, 'Block "Brands"')
 
     def is_mozaika_block_visible(self):
-        """ Checking if the "Mozaika" block is visible,
-        :return: True if the "Brands" block is visible"""
-        return self.is_element_visible(self.mosaica)
+        """
+        Check if the "Mozaika" block is visible,
+        :return: True if the "Brands" block is visible, otherwise returns 'False'
+        """
+        return self.is_element_visible(self.mosaica, 'Block "Mozaika"')
 
     def is_blog_visible(self):
-        """ Checking if the "Blog" block is visible,
-        :return: True if the "Blog" block is visible """
-        return self.is_element_visible(self.blog)
+        """
+        Check if the "Blog" block is visible,
+        :return: True if the "Blog" block is visible, otherwise returns 'False'
+        """
+        return self.is_element_visible(self.blog, 'Block "Blog"')
 
     def click_all_promotion_btn(self):
-        """ Clicking "Vse Akzii" button, check if button is visible,
-        :return: object of page"""
+        """
+        Click "Vse Akzii" button, check if button is visible,
+        :return: object of page
+        """
         return self.wait.until(EC.visibility_of_element_located(self.vsi_akzii_btn)).click()
 
     def click_all_brands_btn(self):
-        """ Clicking "All brands" button, check if button is visible,
-        :return: object of page"""
+        """
+        Click "All brands" button, check if button is visible,
+        :return: object of page
+        """
         return self.wait.until(EC.visibility_of_element_located(self.all_brands_btn)).click()
 
     def open_blog(self):
-        """ Clicking "Go to blog" button, check if button is visible,
-        :return: object of page"""
+        """
+        Click "Go to blog" button, check if button is visible,
+        :return: object of page
+        """
         return self.wait.until(EC.visibility_of_element_located(self.go_to_blog_btn)).click()
 
     def get_slider_photo_src(self):
-        """ Getting the photo src to verify that photos are changing,
-        :return: photo src"""
+        """ Get the photo src to verify that photos are changing,
+        :return: photo src
+        """
         slider_image = self.wait.until(EC.presence_of_element_located(self.base_slider_img))
         image_src = slider_image.get_attribute('src')
         return image_src
 
     def click_scroll_btn(self):
-        """ Clicking right scroll button on the slider to switch image,
-        :return: object of page """
+        """
+        Click right scroll button on the slider to switch image,
+        :return: object of page
+        """
         return self.click(self.slider_scroll_btn, 'Scroll button')
 
     def get_brand_img_src(self):
-        """ Getting the photo src in the "Brands" block to verify that photos are changing,
+        """
+        Get the photo src in the "Brands" block to verify that photos are changing,
         :return: photo src"""
         brand_image_1st = self.wait.until(EC.presence_of_element_located(self.brand_base_img))
         img_src = brand_image_1st.get_attribute('src')
         return img_src
 
     def get_next_brand_img_src(self):
-        """ Getting the next photo src in the "Brands" block after clicking scroll btn
+        """
+        Get the next photo src in the "Brands" block after clicking scroll btn
         to verify that photos are changing,
         :return: photo src """
         brand_image_3rd = self.wait.until(EC.presence_of_element_located(self.brand_img_3))
@@ -211,13 +258,9 @@ class Body(BasePage):
         return img_src
 
     def click_brands_scroll_btn(self):
-        """ Clicking right scroll button on the slider to switch image,
-        :return: object of page"""
+        """
+        Click right scroll button on the slider to switch image,
+        :return: object of page
+        """
         self.wait.until(EC.visibility_of_any_elements_located(self.slider_scroll_btn))[2].click()
         return self
-
-    def get_recovery_success_msg_text(self):
-        """ Opening the login popup, clicking on "Забыли пароль" btn, entering valid email,
-        clicking "Получить новый пароль" btn",
-        :return: recovery success msg text"""
-        return self.wait.until(EC.visibility_of_element_located(self.recovery_pass_succ_msg)).text

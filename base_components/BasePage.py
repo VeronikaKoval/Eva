@@ -1,7 +1,7 @@
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 
-from driver import Singleton
+from driver import Driver
 
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -11,7 +11,7 @@ class BasePage:
     wait_element_time = 10
 
     def __init__(self):
-        self.driver = Singleton.get_webdriver()
+        self.driver = Driver.get_webdriver()
         self.wait = WebDriverWait(self.driver, self.wait_element_time)
 
     def find_element(self, locator, element_name):
@@ -19,11 +19,11 @@ class BasePage:
         :param locator
         :param element_name: name of element which used in error message
         :return: page element"""
-        return self.wait.until(EC.presence_of_element_located(locator), 'There is no element "{}"'.format(element_name))
-
-    # def click(self, locator):
-    #     element = self.wait.until(EC.presence_of_element_located(locator), 'There is no such element')
-    #     element.click()
+        try:
+            self.wait.until(EC.presence_of_element_located(locator), 'There is no element "{}"'.format(element_name))
+            return self
+        except:
+            raise Exception('{} not found'.format(element_name))
 
     def click(self, locator, element_name):
         """ Looking for element with given locator, check if element is clickable and click on the element
@@ -31,49 +31,57 @@ class BasePage:
         :param element_name: name of element
         :return: page element """
         required_item = self.wait.until(EC.presence_of_element_located(locator),
-                                        'Відсутній {}'.format(element_name))
-        if self.element_is_clickable(locator):
+                                        'There is no element "{}"'.format(element_name))
+        if self.element_is_clickable(locator, element_name):
             required_item.click()
         else:
-            raise Exception('{} не клікабельний'.format(element_name))
+            raise Exception('{} not clickable'.format(element_name))
         return self
 
-    def hover_element(self, locator):
+    def hover_element(self, locator, element_name):
         """ Hovering element with given locator, check if element is visible
         :param locator
+        :param element_name: name of element
         :return: element """
-        element_to_hover = self.wait.until(EC.visibility_of_element_located(locator), 'There is no such element')
-        hover = ActionChains(self.driver).move_to_element(element_to_hover)
-        hover.perform()
-        return self
+        element_to_hover = self.wait.until(EC.visibility_of_element_located(locator),
+                                           '{} not visible'.format(element_name))
+        try:
+            hover = ActionChains(self.driver).move_to_element(element_to_hover)
+            hover.perform()
+            return self
+        except:
+            raise Exception('{} can not be hovered'.format(element_name))
 
-    def element_is_clickable(self, locator):
+    def element_is_clickable(self, locator, element_name):
         """ Looking for element with given locator and check if this element is enabled
         :param locator: tuple of method to search and locator
-        :return: Returns 'True' if the web-element is clickable, otherwise returns 'False'
+        :param element_name: name of element
+        :return: 'True' if the web-element is clickable, otherwise returns 'False'
         """
         try:
-            self.wait.until(EC.visibility_of_element_located(locator))
+            self.wait.until(EC.visibility_of_element_located(locator)), '{} not visible'.format(element_name)
             return True
         except:
             return False
 
-    def is_element_present(self, locator):
+    def is_element_present(self, locator, element_name):
         """ Looking for element with given locator and check if this element is present
         :param locator
+        :param element_name: name of element
         :return: Returns 'True' if the web-element is present, otherwise returns 'False'"""
         try:
-            self.wait.until(EC.visibility_of_element_located(locator))
+            self.wait.until(EC.presence_of_element_located(locator)), 'There is no element "{}"'.format(element_name)
             return True
         except:
             return False
 
-    def is_element_visible(self, locator):
+    def is_element_visible(self, locator, element_name):
         """ Looking for element with given locator and check if this element is visible
         :param locator
+        :param element_name: name of element
         :return: Returns 'True' if the web-element is visible, otherwise returns 'False'"""
         try:
-            self.wait.until(EC.visibility_of_element_located(locator))
+            self.wait.until(EC.visibility_of_element_located(locator)), '{} not visible'.format(element_name)
             return True
         except:
             return False

@@ -17,7 +17,10 @@ class RecoveryPassPopUp(BasePopup):
     new_pass_btn = (By.CSS_SELECTOR, 'button.action.submit.primary')
 
     def recovery(self, mail):
-        """ Entering email, clicking "Получить новый пароль" btn"""
+        """
+        Enter email, clicking "Получить новый пароль" btn
+        :return: object of page
+        """
         enter_mail = self.wait.until(EC.visibility_of_element_located(self.mail_field_in_recovery))
         enter_mail.send_keys(mail)
         time.sleep(2)
@@ -25,16 +28,23 @@ class RecoveryPassPopUp(BasePopup):
         return self
 
     def get_error_msg_recovery_wrong_email(self):
-        """ Opening the login popup, clicking on "Забыли пароль" btn, entering email,
-        clicking "Получить новый пароль" btn", entering invalid email(without "@"), :return: recovery error msg text """
+        """
+        Open the login popup, clicking on "Забыли пароль" btn, entering email,
+        clicking "Получить новый пароль" btn", entering invalid email(without "@"),
+        :return: recovery error msg text
+        """
         return self.wait.until(EC.visibility_of_element_located(self.recovery_error_msg)).text
 
     def is_get_new_pass_btn_visible(self):
-        """ Checking if the "Get new pass" btn is visible,
-        :return: True, if button is visible"""
-        return self.is_element_visible(self.new_pass_btn)
+        """
+        Check if the "Get new pass" btn is visible,
+        :return: True, if button is visible, otherwise returns 'False'
+        """
+        return self.is_element_visible(self.new_pass_btn, 'Get new pass button')
 
     def is_mail_in_recovery_visible(self):
-        """ Checking if the email field is visible,
-        :return: True, if field is visible"""
-        return self.is_element_visible(self.mail_field_in_recovery)
+        """
+        Check if the email field is visible,
+        :return: True, if field is visible, otherwise returns 'False'
+        """
+        return self.is_element_visible(self.mail_field_in_recovery, 'Mail field in recovery password')
