@@ -13,7 +13,6 @@ class TestHeader(BaseTest):
         """
         Click on feedback link to get feedback pop up, clicking on the phone field,
         entering invalid phone number, getting text of the error message
-        :return True, if text of the error coincides with expected, otherwise returns 'False'
         """
         header = Header()
         header.call_back(phone_number='00000000')
@@ -24,7 +23,6 @@ class TestHeader(BaseTest):
         """
         Click on feedback link to get feedback pop up, clicking on the phone field,
         enter valid phone number, getting text of the success message
-        :return True, if text of the error coincides with expected, otherwise returns 'False'
         """
         header = Header()
         header.call_back(phone_number='123456789')
@@ -35,7 +33,6 @@ class TestHeader(BaseTest):
         """
         Check presence of the search field , click on the search field, enter valid search query "духи"
         and checking whether the block with search results is present
-        :return True, if elements are visible, otherwise returns 'False'
         """
         header = Header()
         assert header.is_search_field_visible() is True, 'The search field is not visible'
@@ -46,7 +43,6 @@ class TestHeader(BaseTest):
         """
         Click on the search field, entering invalid search query,
         get text of the error for the invalid query
-        :return True, if text of the error coincides with expected, otherwise returns 'False'
         """
         header = Header()
         header.enter_query_into_search_field('xdcydcyu')
@@ -56,7 +52,6 @@ class TestHeader(BaseTest):
     def test_open_cart(self):
         """
         Open the 'Cart', verifying that cart popup is opened and it is empty for unregistered account,
-        :return True, if element is visible anftext of the error coincides with expected, otherwise returns 'False'
         """
         header = Header()
         header.open_cart()
@@ -66,7 +61,6 @@ class TestHeader(BaseTest):
     def test_logo(self):
         """
         Open the "Uhod" tab, clicking on the logo to verify that it returns to the main page
-        :return True, if element is visible and page url coincides with expected, otherwise returns 'False'
         """
         header = Header()
         header.click_logo()

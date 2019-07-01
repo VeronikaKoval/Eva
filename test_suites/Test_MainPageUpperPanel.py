@@ -15,7 +15,6 @@ class TestPanel(BaseTest):
     def test_confirm_location(self):
         """
         Click "Confirm loc" btn on the suggested location 'Kyiv' and verifying the text of the chosen location
-        :return True, if btn is visible and expected location chose, otherwise return 'False'
         """
         panel = Panel()
         assert panel.is_confirm_loc_btn_visible() is True, '"Confirm location" btn is not visible'
@@ -25,7 +24,6 @@ class TestPanel(BaseTest):
     def test_change_location(self):
         """
         Choosing 'Lviv' city as current city from the location drop-down list
-        :return True, if expected location is chosen, otherwise return 'False'
         """
         panel = Panel()
         panel.choose_location()
@@ -35,7 +33,6 @@ class TestPanel(BaseTest):
         """
         Click 'Choose another location' button, choose random location from the list of location
         and verifying that popup with changed location is opened
-        :return True, if btn is visible and expected location is chosen, otherwise return 'False'
         """
         panel = Panel()
         panel.choose_random_loc()
@@ -46,7 +43,6 @@ class TestPanel(BaseTest):
         """
         Chang the language of the site from RUS to UKR on the upper panel, getting page URL to verify that
         language has changed to URK
-        :return True, if expected language is chosen, otherwise return 'False'
         """
         panel = Panel()
         panel.change_language()
@@ -57,7 +53,6 @@ class TestPanel(BaseTest):
         """
         Add cookies, which are responsible for UKR language, getting page URL to verify that
         language has changed to URK
-        :return True, if expected language is chosen, otherwise return 'False'
         """
         panel = Panel()
         panel.add_lang_cookies()
@@ -68,7 +63,6 @@ class TestPanel(BaseTest):
         """
         Click on the 'Наши проекты' button on the upper panel, checking the presence and
         visibility of "Our projects" block
-        :return True, if element is visible, otherwise return 'False'
         """
         panel = Panel()
         assert panel.is_our_projects_visible(), 'The "Наши проекты" block is not visible'
@@ -77,7 +71,6 @@ class TestPanel(BaseTest):
         """
         Click the "Stores", then "News", tab on the upper panel, get page current
         URL to check that page has opened and Url changed
-        :return True, if page url coincides with expected, otherwise return 'False'
         """
         panel = Panel()
         panel.click_stores_tab()
@@ -90,7 +83,6 @@ class TestPanel(BaseTest):
         """
         Click the "Help" and then "Certificate" tab on the upper panel to check whether the popup is opened
         and visible
-        :return True, if tabs are visible, otherwise return 'False'
         """
         panel = Panel()
         assert panel.click_help_tab(), 'The "Help" popup is not visible'

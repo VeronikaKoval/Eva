@@ -12,7 +12,6 @@ class TestFooter(BaseTest):
     def test_visibility_of_blocks(self):
         """
         Check if " Projects", "Help", " Hotline", "Subscribe" blocks in footer are visible
-        :return True, if elements are visible, otherwise returns 'False'
         """
         footer = Footer()
         assert footer.is_projects_visible() is True, 'Block "Projects" is not visible or absent'
@@ -26,7 +25,6 @@ class TestFooter(BaseTest):
     def test_subscribe_unsuccessful(self):
         """
         Check the subscribe functionality with invalid email, get text of the error message
-        return True, if error text coincides with the expected, otherwise returns 'False'
         """
         footer = Footer()
         footer.subscribe_for_news('ruzifawomaheximail.com')
@@ -36,7 +34,6 @@ class TestFooter(BaseTest):
     def test_subscribe_successful(self):
         """
         Check the subscribe functionality with valid email, get text of the success message
-        :return True, if text coincides with the expected, otherwise returns 'False'
         """
         footer = Footer()
         footer.subscribe_for_news('baylan.oluwatimilehin@plutocow.com')
@@ -55,7 +52,6 @@ class TestFooter(BaseTest):
     def test_youtube(self):
         """
         Click on Youtube link, verifying that it is opened in a new tab, checking page URL
-        :return True, if page Url coincide with expected, otherwise returns 'False'
         """
         footer = Footer()
         footer.click_youtube()
@@ -66,7 +62,6 @@ class TestFooter(BaseTest):
     def test_twitter(self):
         """
         Click on Twitter link, verifying that it is opened in a new tab, checking page URL
-        :return True, if page Url coincide with expected, otherwise returns 'False'
         """
         footer = Footer()
         footer.click_twitter()
@@ -76,7 +71,6 @@ class TestFooter(BaseTest):
     def test_instagram(self):
         """
         Click on Insagram link, verifying that it is opened in a new tab, checking page URL
-        :return True, if page Url coincide with expected, otherwise returns 'False'
         """
         footer = Footer()
         footer.click_instagram()

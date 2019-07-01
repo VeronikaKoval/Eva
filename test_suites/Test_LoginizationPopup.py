@@ -18,7 +18,6 @@ class TestLoginization(BaseTest):
         """
         Check if the email field, password field, "Submit"  btn, register link, "Stay on site" checkbox and
         'The "Forgot password" link are visible in the login popup
-        :return True, if elements are visible, otherwise returns 'False'
         """
         login_popup = LoginPopup()
         assert login_popup.is_email_field_visible() is True, 'The email field is not visible'
@@ -38,8 +37,7 @@ class TestLoginization(BaseTest):
     def test_unsuccessful_authorization_mail(self, login, password):
         """
         Enter invalid mail(without ".", without "@") and valid password to check authorization,
-        gets authorization error message text to verify the text of the error msg
-        :return True, if error text coincides with the expected, otherwise returns 'False'
+        gets authorization error message text to verify the text of the error message
         """
         login_popup = LoginPopup()
         login_popup.authorize(login, password)
@@ -58,7 +56,6 @@ class TestLoginization(BaseTest):
         """
         Enter valid mail and invalid password to check authorization,
         get authorization error message text to verify the text of the error msg
-        :return True, if error text coincides with the expected, otherwise returns 'False'
         """
         login_popup = LoginPopup()
         login_popup.authorize(login, password)
@@ -69,7 +66,6 @@ class TestLoginization(BaseTest):
         """
         Enter valid mail and valid password to check successful authorization, check whether popup
         after authorization with options is visible
-        :return True, if popup is visible, otherwise returns 'False'
         """
         login_popup = LoginPopup()
         login_popup.authorize(login='ruzifawoma@heximail.com', password='qi3R8Ue4gj8g9BV')
@@ -81,8 +77,7 @@ class TestLoginization(BaseTest):
     def test_authorization_with_empty_field(self):
         """
         Click the submit button, without entering login and password to check unsuccessful authorization
-         getting authorization error message text
-         :return True, if error text coincides with the expected, otherwise returns 'False'
+        getting authorization error message text
          """
         login_popup = LoginPopup()
         login_popup.authorization_with_empty_field()
@@ -93,7 +88,6 @@ class TestLoginization(BaseTest):
         """
         Click on "Забыли пароль" btn, entering email, clicking "Получить новый пароль" btn",
         entering invalid email(without "@"), getting recovery error msg text to verify the text of the error
-        :return True, if error text coincides with the expected, otherwise returns 'False'
         """
         recovery_popup = self.main_page.click_forgot_pass()
         assert recovery_popup.is_mail_in_recovery_visible() is True, 'Mail field in recovery is not visible'
@@ -107,7 +101,6 @@ class TestLoginization(BaseTest):
         """
         Open the login popup, clicking on "Забыли пароль" btn, entering email,
         clicking "Получить новый пароль" btn", entering valid email, get recovery success message
-        :return True, if error text coincides with the expected, otherwise returns 'False'
         """
         recovery_popup = self.main_page.click_forgot_pass()
         recovery_popup.recovery(mail='miwixiq@getnada.com')

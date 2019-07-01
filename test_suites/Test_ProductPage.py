@@ -14,7 +14,6 @@ class TestProductPage(BaseTest):
         """
         Open "Средства для проблемной кожи" page,checking checkbox "Франция" in "Страна производства" filter,
         getting checkbox attribute to verify that checkbox is checked
-        :return: True if filter value is correct ,otherwise returns 'False'
         """
         products_list = List()
         products_list.apply_filter_country()
@@ -24,7 +23,6 @@ class TestProductPage(BaseTest):
         """
         Check checkbox "Франция" in "Страна производства" filter, uncheck it,
         verifying that page current URL doesn't have filter's url
-        :return: True if page url coincides, otherwise returns 'False'
         """
         products_list = List()
         products_list.apply_filter_country()
@@ -36,7 +34,6 @@ class TestProductPage(BaseTest):
         """
         Open "Средства для проблемной кожи" page, scrolling down name filter, clicking on "Nivea" checkbox,
         check the checkbox status to verify that checkbox is checked
-        :return: True if filter attribute is correct, otherwise returns 'False'
         """
         product_list = List()
         product_list.apply_filter_name()
@@ -46,7 +43,6 @@ class TestProductPage(BaseTest):
         """
         Open the sorting drop down, clicking sorting from expensive to cheap,
         check page current URL to verifying that page URL is changed
-        :return: True if page url coincides, otherwise returns 'False'
         """
         product_list = List()
         product_list.apply_sort_price_decs()
@@ -56,7 +52,6 @@ class TestProductPage(BaseTest):
         """
         Open the sorting drop down, clicking sorting from cheap to expensive,
         check page current URL to verifying that page URL is changed
-        :return: True if page url coincides, otherwise returns 'False'
         """
         product_list = List()
         product_list.apply_sort_price_asc()
@@ -66,7 +61,6 @@ class TestProductPage(BaseTest):
         """
         Scroll page to manual price filter, applying manual filter for sorting products by price,
         get price value from the price box to verify that price box contains chosen price
-        :return: True if filter price coincides with expected, otherwise returns 'False'
         """
         product_list = List()
         product_list. apply_manual_price_filter()

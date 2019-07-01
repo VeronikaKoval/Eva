@@ -19,7 +19,6 @@ class TestBody(BaseTest):
     def test_main_drop_down_menu(self):
         """
         Click on 'Все разделы' menu item, checking the presence of the side drop down menu
-        :return True, if element is present, otherwise returns 'False'
         """
         main_page = Body()
         assert main_page.is_main_drop_down_menu_present(), 'The side drop down menu is absent'
@@ -28,7 +27,6 @@ class TestBody(BaseTest):
         """
         Click on 'Все разделы' menu item, hovering each menu category,
         checking if the drop down menu is visible,
-        :return True, if elements are visible, otherwise returns 'False'
         """
         main_page = Body()
         assert main_page.hover_menu_item_uhod() is True, \
@@ -50,7 +48,6 @@ class TestBody(BaseTest):
         """
         Check if the banner, side banner, "Akzii", "Top prodazh", "Nabory", "Popular categories",
         "Brands" blocks are present and visible
-        :return True, if element is present, otherwise returns 'False
         """
         main_page = Body()
         assert main_page.is_side_banner_visible(), 'Side banner is not visible or absent'
@@ -67,7 +64,7 @@ class TestBody(BaseTest):
         """
         Click "All promotions" btn, "All brands", "Go to blog" buttons, get pages current Urls to verify
         that new page is opened
-        :return True, if page url coincides with expected, otherwise returns 'False"""
+        """
         main_page = Body()
         main_page.click_all_promotion_btn()
         assert 'promotion' in main_page.get_page_url(), 'URL is different and doesnt match "promotion" '
@@ -82,7 +79,6 @@ class TestBody(BaseTest):
         """
         Check if  the slider is present. Click right scroll button on the slider to switch image.
         Get the photo src to verify that photos are changing
-        :return True, if photos src are different, otherwise returns 'False
         """
         main_page = Body()
         for i in range(4):
@@ -95,7 +91,6 @@ class TestBody(BaseTest):
         """
         Check if the "Brands" block is visible. Click right scroll button in the banner to switch image.
         Get the photo src to verify that photos are changing
-        :return True, if photos src are different, otherwise returns 'False
         """
         main_page = Body()
         assert main_page.is_brands_block_visible(), 'Block "Brands" is not visible'
